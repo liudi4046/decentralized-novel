@@ -6,11 +6,16 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract NovelManagement is Ownable {
     struct Submission {
+        uint targetChapterId;
         address author;
         string content;
         bool accepted;
         uint256 yesVotes;
         mapping(address => bool) voted;
+    }
+    struct AcceptedSubmission {
+        address author;
+        string content;
     }
     event NewSubmissionAccepted(
         uint256 chapterId,
@@ -19,53 +24,62 @@ contract NovelManagement is Ownable {
     );
 
     Submission[] public submissions;
+    AcceptedSubmission[] public acceptedSubmissions;
     DecentralizedNovelVoteToken public decentralizedNovelVoteToken;
     DecentralizedNovelChapter public decentralizedNovelChapter;
     bool public isNFTAddressSet;
+    bool public isVoteTokenAddressSet;
 
-    constructor(address votingTokenAddress) {
-        decentralizedNovelVoteToken = DecentralizedNovelVoteToken(
-            votingTokenAddress
-        );
-    }
-
-    function vote(uint256 index, bool yesVote) public {
-        Submission storage submission = submissions[index];
+    function vote(uint256 submissionIndex) public {
+        Submission storage submission = submissions[submissionIndex];
 
         require(
             !submission.voted[msg.sender],
             "You have already voted on this submission."
         );
         require(
-            decentralizedNovelVoteToken.balanceOf(msg.sender) > 0,
-            "You must own a voting token to vote."
+            decentralizedNovelVoteToken.balanceOf(msg.sender) > 50,
+            "You must own enough voting token to vote."
         );
-        uint256 balance = decentralizedNovelVoteToken.balanceOf(msg.sender);
-        require(balance > 0, "You must own a voting token to vote.");
 
-        if (yesVote) {
-            submission.yesVotes += 1;
-            if (
-                submission.yesVotes >
-                decentralizedNovelVoteToken.totalSupply() / 2
-            ) {
-                emit NewSubmissionAccepted(
-                    index,
-                    submission.author,
-                    submission.content
-                );
+        submission.yesVotes += 1;
+        if (
+            submission.yesVotes * 50 >
+            decentralizedNovelVoteToken.totalSupply() / 5
+        ) {
+            acceptedSubmissions.push();
+            AcceptedSubmission
+                storage newAcceptedSubmission = acceptedSubmissions[
+                    acceptedSubmissions.length - 1
+                ];
 
-                decentralizedNovelChapter.mint(index);
-            }
+            newAcceptedSubmission.author = submission.author;
+            newAcceptedSubmission.content = submission.content;
+
+            decentralizedNovelChapter.mint(acceptedSubmissions.length - 1);
+            decentralizedNovelVoteToken.mint(submission.author);
+            emit NewSubmissionAccepted(
+                acceptedSubmissions.length - 1,
+                submission.author,
+                submission.content
+            );
         }
-
         submission.voted[msg.sender] = true;
     }
 
-    function setNFTAddress(address nftAddress) public onlyOwner {
+    function setNFTAddress(address nftAddress) external onlyOwner {
         require(!isNFTAddressSet, "NFT address has already been set");
         decentralizedNovelChapter = DecentralizedNovelChapter(nftAddress);
         isNFTAddressSet = true;
+    }
+
+    function setVoteTokenAddress(address tokenAddress) external onlyOwner {
+        require(
+            !isVoteTokenAddressSet,
+            "Vote Token address has already been set"
+        );
+        decentralizedNovelVoteToken = DecentralizedNovelVoteToken(tokenAddress);
+        isVoteTokenAddressSet = true;
     }
 
     function submit(string memory _content) public {
@@ -98,5 +112,19 @@ contract NovelManagement is Ownable {
             submissions[index].accepted,
             submissions[index].yesVotes
         );
+    }
+
+    function getAcceptedSubmissions()
+        public
+        view
+        returns (address[] memory, string[] memory)
+    {
+        address[] memory authors = new address[](acceptedSubmissions.length);
+        string[] memory contents = new string[](acceptedSubmissions.length);
+        for (uint i = 0; i < acceptedSubmissions.length; i++) {
+            authors[i] = acceptedSubmissions[i].author;
+            contents[i] = acceptedSubmissions[i].content;
+        }
+        return (authors, contents);
     }
 }

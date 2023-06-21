@@ -1,42 +1,107 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import "./DecentralizedNovelVoteToken.sol";
-import "./DecentralizedNovelChapter.sol";
+
+import {
+  DecentralizedNovelChapter,
+  DecentralizedNovelChapter__factory,
+  DecentralizedNovelVoteToken,
+  DecentralizedNovelVoteToken__factory,
+  NovelManagement,
+  NovelManagement__factory,
+} from "../typechain";
+import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
+
 describe("NovelManagement", function () {
-  it("Should submit and vote correctly", async function () {
-    const VoteToken = await ethers.getContractFactory(
-      "DecentralizedNovelVoteToken"
-    );
-    const voteToken = await VoteToken.deploy(1000);
-    console.log("voteToken", voteToken);
-    const NovelManagement = await ethers.getContractFactory("NovelManagement");
-    const novelManagement = await NovelManagement.deploy(voteToken.address);
-    const NFTContract = await ethers.getContractFactory(
-      "DecentralizedNovelChapter"
-    );
-    const nftContract = await NFTContract.deploy(novelManagement.address);
+  let VoteToken: DecentralizedNovelVoteToken__factory,
+    voteToken: DecentralizedNovelVoteToken;
+  let NovelManagement: NovelManagement__factory,
+    novelManagement: NovelManagement;
+  let NFTContract: DecentralizedNovelChapter__factory,
+    nftContract: DecentralizedNovelChapter;
+  let accounts: HardhatEthersSigner[],
+    submitter1: HardhatEthersSigner,
+    voter1: HardhatEthersSigner,
+    submitter2: HardhatEthersSigner,
+    voter2: HardhatEthersSigner,
+    submitter3: HardhatEthersSigner,
+    voter3: HardhatEthersSigner;
+  beforeEach(async () => {
+    VoteToken = await ethers.getContractFactory("DecentralizedNovelVoteToken");
+    voteToken = await VoteToken.deploy(1000);
 
-    const accounts = await ethers.getSigners();
-    const submitter = accounts[0];
-    const voter = accounts[1];
+    NovelManagement = await ethers.getContractFactory("NovelManagement");
+    novelManagement = await NovelManagement.deploy(
+      await voteToken.getAddress()
+    );
+    NFTContract = await ethers.getContractFactory("DecentralizedNovelChapter");
+    nftContract = await NFTContract.deploy(await novelManagement.getAddress());
 
-    // Submit a new chapter
-    await novelManagement.connect(submitter).submit("This is a new chapter");
+    accounts = await ethers.getSigners();
+    //submitter === deployer(all contracts)
+    submitter1 = accounts[0]; //deployer of three contracts
+    voter1 = accounts[1];
+    submitter2 = accounts[2];
+    voter2 = accounts[3];
+    submitter3 = accounts[4];
+    voter3 = accounts[5];
+  });
+
+  it("should set nft contract address correctly", async () => {
+    await novelManagement.setNFTAddress(await nftContract.getAddress());
+    const deployedNFTContract =
+      await novelManagement.decentralizedNovelChapter();
+    expect(deployedNFTContract).to.equal(await nftContract.getAddress());
+  });
+  async function addThreeSubmits() {
+    await novelManagement.connect(submitter1).submit("submit 1");
+    await novelManagement.connect(submitter2).submit("submit 2");
+    await novelManagement.connect(submitter3).submit("submit 3");
+  }
+  async function transferTokenToVoters() {
+    await voteToken.connect(submitter1).transfer(voter1.address, 10);
+    await voteToken.connect(submitter1).transfer(voter2.address, 10);
+    await voteToken.connect(submitter1).transfer(voter3.address, 10);
+  }
+
+  it("Should submit correctly", async function () {
+    // Submit new chapters
+    await addThreeSubmits();
 
     // Check that the new chapter is there
-    const submission = await novelManagement.getSubmission(0);
-    expect(submission.content).to.equal("This is a new chapter");
-    expect(submission.accepted).to.equal(false);
-    expect(submission.yesVotes).to.equal(0);
 
-    // Transfer some voting tokens to the voter
-    await voteToken.transfer(voter.address, 100);
-
-    // Vote on the new chapter
-    await novelManagement.connect(voter).vote(0, true);
-
-    // Check that the vote was counted
-    const updatedSubmission = await novelManagement.getSubmission(0);
-    expect(updatedSubmission.yesVotes).to.equal(1);
+    for (let i = 0; i <= 2; i++) {
+      console.log("i:", i);
+      const submission = await novelManagement.getSubmission(i);
+      expect(submission.content).to.equal(`submit ${i + 1}`);
+      expect(submission.accepted).to.equal(false);
+      expect(submission.yesVotes).to.equal(0);
+    }
   });
+  it("Should transfer erc20 token properly", async () => {
+    await transferTokenToVoters();
+    expect(await voteToken.connect(voter1).balanceOf(voter1.address)).to.equal(
+      10
+    );
+    expect(
+      await voteToken.connect(submitter1).balanceOf(voter2.address)
+    ).to.equal(10);
+    expect(
+      await voteToken.connect(submitter1).balanceOf(voter3.address)
+    ).to.equal(10);
+  });
+  it("Should first-time vote correctly", async () => {
+    await transferTokenToVoters();
+    await novelManagement.connect(voter2).vote(1);
+    await novelManagement.connect(voter3).vote(1);
+    await novelManagement.connect(voter1).vote(1);
+    expect((await novelManagement.getSubmission(1)).yesVotes).to.equal(3);
+  });
+  it("should reward submitter when chapter get passed", async () => {
+    await transferTokenToVoters();
+    await novelManagement.connect(submitter1).vote(0);
+  });
+});
+
+describe("NFT Contract", () => {
+  it("should ");
 });

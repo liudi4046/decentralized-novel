@@ -5,20 +5,23 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./NovelManagement.sol";
 
 contract DecentralizedNovelChapter is ERC721 {
-    NovelManagement public novelManagement;
+    address novelManagementAddress;
 
     constructor(
-        address novelManagementAddress
+        address _novelManagementAddress
     ) ERC721("DecentralizedNovelChapter", "DNC") {
-        novelManagement = NovelManagement(novelManagementAddress);
+        novelManagementAddress = _novelManagementAddress;
     }
 
-    function mint(uint256 chapterIndex) public {
-        // Make sure the chapter is accepted before minting an NFT for it
-        (address author, , bool accepted, ) = novelManagement.getSubmission(
-            chapterIndex
+    function mint(uint256 chapterIndex) external {
+        require(
+            msg.sender == novelManagementAddress,
+            "only NovelManagement contract can call this function"
         );
-        require(accepted, "Chapter has not been accepted");
+        NovelManagement novelManagement = NovelManagement(
+            novelManagementAddress
+        );
+        (address author, , , ) = novelManagement.getSubmission(chapterIndex);
         _mint(author, chapterIndex);
     }
 }
