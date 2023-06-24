@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./NovelManagement.sol";
 
 contract DecentralizedNovelChapter is ERC721 {
-    address novelManagementAddress;
+    address public novelManagementAddress;
 
     constructor(
         address _novelManagementAddress
@@ -21,7 +21,7 @@ contract DecentralizedNovelChapter is ERC721 {
         NovelManagement novelManagement = NovelManagement(
             novelManagementAddress
         );
-        (address author, , , ) = novelManagement.getSubmission(chapterIndex);
+        (address author, ) = novelManagement.acceptedSubmissions(chapterIndex);
         _mint(author, chapterIndex);
     }
 }

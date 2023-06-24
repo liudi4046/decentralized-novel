@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract DecentralizedNovelVoteToken is ERC20 {
-    address novelManagementAddress;
+    address public novelManagementAddress;
 
     constructor(
         uint256 initialSupply,
@@ -13,11 +13,11 @@ contract DecentralizedNovelVoteToken is ERC20 {
         novelManagementAddress = _novelManagementAddress;
     }
 
-    function mint(address author) external {
+    function mint(address author, uint amount) external {
         require(
             msg.sender == novelManagementAddress,
             "only NovelManagement contract can call this function"
         );
-        _mint(author, 100);
+        _mint(author, amount);
     }
 }

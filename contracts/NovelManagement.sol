@@ -32,7 +32,11 @@ contract NovelManagement is Ownable {
 
     function vote(uint256 submissionIndex) public {
         Submission storage submission = submissions[submissionIndex];
-
+        require(
+            submissions[submissionIndex].targetChapterId ==
+                acceptedSubmissions.length,
+            "Please vote for the latest chapter submissions"
+        );
         require(
             !submission.voted[msg.sender],
             "You have already voted on this submission."
@@ -45,7 +49,7 @@ contract NovelManagement is Ownable {
         submission.yesVotes += 1;
         if (
             submission.yesVotes * 50 >
-            decentralizedNovelVoteToken.totalSupply() / 5
+            decentralizedNovelVoteToken.totalSupply() / 10
         ) {
             acceptedSubmissions.push();
             AcceptedSubmission
@@ -57,14 +61,23 @@ contract NovelManagement is Ownable {
             newAcceptedSubmission.content = submission.content;
 
             decentralizedNovelChapter.mint(acceptedSubmissions.length - 1);
-            decentralizedNovelVoteToken.mint(submission.author);
+            decentralizedNovelVoteToken.mint(submission.author, 100);
             emit NewSubmissionAccepted(
                 acceptedSubmissions.length - 1,
                 submission.author,
                 submission.content
             );
         }
+
         submission.voted[msg.sender] = true;
+        decentralizedNovelVoteToken.mint(msg.sender, 10);
+    }
+
+    function hasVoted(
+        uint submissionIndex,
+        address voter
+    ) external view returns (bool) {
+        return submissions[submissionIndex].voted[voter];
     }
 
     function setNFTAddress(address nftAddress) external onlyOwner {
@@ -92,6 +105,7 @@ contract NovelManagement is Ownable {
         newSubmission.content = _content;
         newSubmission.accepted = false;
         newSubmission.yesVotes = 0;
+        newSubmission.targetChapterId = acceptedSubmissions.length;
     }
 
     function getSubmission(
