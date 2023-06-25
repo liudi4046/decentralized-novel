@@ -1,22 +1,26 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
-
-  const lockedAmount = ethers.parseEther("0.001");
-
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+  const accounts = await ethers.getSigners();
+  console.log("account 0", accounts[0]);
+  const NovelManagement = await ethers.getContractFactory("NovelManagement");
+  const novelManagement = await NovelManagement.deploy();
+  const NFTContract = await ethers.getContractFactory(
+    "DecentralizedNovelChapter"
   );
+  const nftContract = await NFTContract.deploy(
+    await novelManagement.getAddress()
+  );
+  const VoteToken = await ethers.getContractFactory(
+    "DecentralizedNovelVoteToken"
+  );
+  const voteToken = await VoteToken.deploy(
+    1000,
+    await novelManagement.getAddress()
+  );
+  console.log("NovelManagement address:", await novelManagement.getAddress());
+  console.log("NFTContract address", await nftContract.getAddress());
+  console.log("VoteToken address", await voteToken.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
