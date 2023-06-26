@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import NovelBody from "./NovelBody";
 import { useUserContext } from "../../context/UserContext";
-import { useQuery } from "react-query";
 import { ethers } from "ethers";
 import NovelManagement from "../../abi/NovelManagement.json";
-import { NovelManagement as NovelManagementType } from "../../abi/types/ethers-contracts/NovelManagement";
+import { NovelManagement as NovelManagementType } from "../../../../typechain";
 import Submissions from "./Submissions";
+import Submit from "./Submit";
 
-const provider = new ethers.BrowserProvider(window.ethereum);
+const provider = new ethers.providers.Web3Provider(window.ethereum);
 const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const abi = NovelManagement;
 export const contract = new ethers.Contract(
@@ -33,7 +33,8 @@ export default function Home() {
       await window?.ethereum?.request({
         method: "eth_requestAccounts",
       });
-      setUser(await provider.getSigner());
+
+      setUser(provider.getSigner());
 
       console.log("Connected accounts:", user);
     } catch (error) {
@@ -42,9 +43,10 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="flex ">
       <NovelBody />
       <Submissions />
+      <Submit />
     </div>
   );
 }

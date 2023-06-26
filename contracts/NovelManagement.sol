@@ -128,6 +128,10 @@ contract NovelManagement is Ownable {
         );
     }
 
+    function getSubmissionsLength() external view returns (uint) {
+        return submissions.length;
+    }
+
     function getAcceptedSubmissions()
         public
         view

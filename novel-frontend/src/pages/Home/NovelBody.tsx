@@ -3,10 +3,10 @@ import { useUserContext } from "../../context/UserContext";
 import { contract } from ".";
 
 export default function NovelBody() {
-  const { user, setUser } = useUserContext();
-  const { data, isLoading, error } = useQuery<any>([""], async () => {
-    return contract.connect(user).submit("helo");
-  });
-  console.log("data", data);
-  return <div>NovelBody:</div>;
+  // const { user, setUser } = useUserContext();
+  // const { data, isLoading, error } = useQuery([""], async () => {
+  //   return contract.connect(user).submit("helo");
+  // });
+
+  return <div className="w-1/3 bg-slate-300 h-80">NovelBody:</div>;
 }

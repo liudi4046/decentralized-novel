@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { contract } from ".";
 import { Button } from "@mui/material";
+import { useQuery } from "react-query";
 
 type PartialSubmissionType = [string, string, boolean, bigint] & {
   author: string;
@@ -19,40 +20,48 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
 
 export default function Submissions() {
   const { user, setUser } = useUserContext();
-  const [submission, setSubmission] = useState<PartialSubmissionType>();
-  const [allSubmissions, setAllSubmissions] = useState<SubmissionType[]>();
-  const getSubmission = async () => {
-    setSubmission(await contract.connect(user).getSubmission(3));
-  };
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: allSubmissions,
+  } = useQuery<SubmissionType[]>("getAllSubmissions", async () => {
+    return getAllSubmissions();
+  });
+
   const getAllSubmissions = async () => {
-    const submissionsLength = await contract.connect(user).submissions.length;
-    console.log("submissionsLength", submissionsLength);
+    const submissionsLength = await contract
+      .connect(user)
+      .getSubmissionsLength();
+    const submissionsTemp = [];
+
     for (let i = 0; i < submissionsLength; i++) {
       const curSubmission = await contract.connect(user).submissions(i);
-      setAllSubmissions([...(allSubmissions ?? []), curSubmission]);
+      submissionsTemp.push(curSubmission);
     }
+    console.log("done");
+    return [...submissionsTemp];
   };
-
-  console.log("submission", submission);
-  console.log("all", allSubmissions);
+  console.log(allSubmissions);
   return (
-    <div className="flex flex-col">
-      submission content:{submission?.content}
-      all submissions:{allSubmissions}
-      <Button
-        onClick={getSubmission}
-        variant="contained"
-        style={{ width: "fit" }}
-      >
-        get Submission by index
-      </Button>
-      <Button
-        onClick={getAllSubmissions}
-        variant="contained"
-        style={{ width: "fit" }}
-      >
-        get all submissions
-      </Button>
+    <div className="flex flex-col bg-sky-300 w-1/3">
+      {isFetching ? (
+        <p>loading...</p>
+      ) : (
+        allSubmissions?.map((submission, index) => {
+          return (
+            <div key={index}>
+              <p>index:{index}</p>
+              <p>content:{submission[2]}</p>
+              <p>author:{submission[1]}</p>
+              <p>targetChapterId:{JSON.stringify(submission[0])}</p>
+              <p>yesVotes:{JSON.stringify(submission[4])}</p>
+              <p>accepted:{submission[3] ? "true" : "false"}</p>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }

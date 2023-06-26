@@ -1,19 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, ReactNode, useState } from "react";
 
 import { ethers } from "ethers";
 
-type User = ethers.JsonRpcSigner | null;
+type User = ethers.providers.JsonRpcSigner | string;
 
 // 定义 Context 中的数据结构
 interface UserContextData {
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  user: User | string;
+  setUser: React.Dispatch<React.SetStateAction<User | string>>;
 }
 
 // 创建 Context
@@ -27,19 +21,19 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
-  useEffect(() => {
-    async function getSigner() {
-      if (typeof window.ethereum !== "undefined") {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
+  const [user, setUser] = useState<User>("");
+  // useEffect(() => {
+  //   async function getSigner() {
+  //     if (typeof window.ethereum !== "undefined") {
+  //       const provider = new ethers.BrowserProvider(window.ethereum);
+  //       const signer = await provider.getSigner();
 
-        setUser(signer);
-      }
-    }
+  //       setUser(signer);
+  //     }
+  //   }
 
-    getSigner();
-  }, []);
+  //   getSigner();
+  // }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
