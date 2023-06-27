@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
-import { contract } from ".";
-import { Button } from "@mui/material";
+
 import { useQuery } from "react-query";
+
+import Submission from "./Submission";
+import { novelManagementContract } from "../../contracts";
 
 type PartialSubmissionType = [string, string, boolean, bigint] & {
   author: string;
@@ -31,19 +32,22 @@ export default function Submissions() {
   });
 
   const getAllSubmissions = async () => {
-    const submissionsLength = await contract
+    const submissionsLength = await novelManagementContract
       .connect(user)
       .getSubmissionsLength();
+
     const submissionsTemp = [];
 
     for (let i = 0; i < submissionsLength; i++) {
-      const curSubmission = await contract.connect(user).submissions(i);
+      const curSubmission = await novelManagementContract
+        .connect(user)
+        .submissions(i);
       submissionsTemp.push(curSubmission);
     }
-    console.log("done");
+
     return [...submissionsTemp];
   };
-  console.log(allSubmissions);
+
   return (
     <div className="flex flex-col bg-sky-300 w-1/3">
       {isFetching ? (
@@ -51,14 +55,14 @@ export default function Submissions() {
       ) : (
         allSubmissions?.map((submission, index) => {
           return (
-            <div key={index}>
-              <p>index:{index}</p>
-              <p>content:{submission[2]}</p>
-              <p>author:{submission[1]}</p>
-              <p>targetChapterId:{JSON.stringify(submission[0])}</p>
-              <p>yesVotes:{JSON.stringify(submission[4])}</p>
-              <p>accepted:{submission[3] ? "true" : "false"}</p>
-            </div>
+            <Submission
+              index={index}
+              content={submission[2]}
+              author={submission[1]}
+              targetChapterId={submission[0].toString()}
+              yesVotes={submission[4].toString()}
+              accepted={submission[3] ? "true" : "false"}
+            />
           );
         })
       )}

@@ -5,16 +5,10 @@ import { ethers } from "ethers";
 import NovelManagement from "../../abi/NovelManagement.json";
 import { NovelManagement as NovelManagementType } from "../../../../typechain";
 import Submissions from "./Submissions";
-import Submit from "./Submit";
-
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-const abi = NovelManagement;
-export const contract = new ethers.Contract(
-  contractAddress,
-  abi,
-  provider
-) as unknown as NovelManagementType;
+import Submit from "./SubmitChapter";
+import { ToastContainer } from "react-toastify";
+import Balance from "./Balance";
+import { Provider } from "../../contracts";
 
 export default function Home() {
   const { user, setUser } = useUserContext();
@@ -34,7 +28,7 @@ export default function Home() {
         method: "eth_requestAccounts",
       });
 
-      setUser(provider.getSigner());
+      setUser(await Provider.getSigner());
 
       console.log("Connected accounts:", user);
     } catch (error) {
@@ -47,6 +41,7 @@ export default function Home() {
       <NovelBody />
       <Submissions />
       <Submit />
+      <Balance />
     </div>
   );
 }

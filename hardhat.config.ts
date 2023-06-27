@@ -1,5 +1,9 @@
-require("@nomiclabs/hardhat-ethers");
+import { HardhatUserConfig } from "hardhat/config";
 
-module.exports = {
-  solidity: "0.8.18", // or your Solidity version
+import "@nomicfoundation/hardhat-toolbox";
+
+const config: HardhatUserConfig = {
+  solidity: "0.8.18",
 };
+
+export default config;

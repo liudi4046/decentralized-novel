@@ -1,23 +1,26 @@
-async function main() {
-  const hre = require("hardhat");
+import { ethers } from "hardhat";
 
-  const accounts = await hre.ethers.getSigners();
+async function main() {
+  const accounts = await ethers.getSigners();
   console.log("account 0", accounts[0]);
-  const NovelManagement = await hre.ethers.getContractFactory(
-    "NovelManagement"
-  );
+  const NovelManagement = await ethers.getContractFactory("NovelManagement");
   const novelManagement = await NovelManagement.deploy();
-  const NFTContract = await hre.ethers.getContractFactory(
+  const NFTContract = await ethers.getContractFactory(
     "DecentralizedNovelChapter"
   );
-  const nftContract = await NFTContract.deploy(novelManagement.address);
-  const VoteToken = await hre.ethers.getContractFactory(
+  const nftContract = await NFTContract.deploy(novelManagement.getAddress());
+  const VoteToken = await ethers.getContractFactory(
     "DecentralizedNovelVoteToken"
   );
-  const voteToken = await VoteToken.deploy(1000, novelManagement.address);
-  console.log("NovelManagement address:", novelManagement.address);
-  console.log("NFTContract address", nftContract.address);
-  console.log("VoteToken address", voteToken.address);
+  const voteToken = await VoteToken.deploy(1000, novelManagement.getAddress());
+
+  //set nft contract address and token contract address in novelmanagement
+  novelManagement.setNFTAddress(await nftContract.getAddress());
+  novelManagement.setVoteTokenAddress(await voteToken.getAddress());
+
+  console.log("NovelManagement address:", await novelManagement.getAddress());
+  console.log("NFTContract address", await nftContract.getAddress());
+  console.log("VoteToken address", await voteToken.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere

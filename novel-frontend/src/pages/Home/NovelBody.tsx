@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import { useUserContext } from "../../context/UserContext";
-import { contract } from ".";
 
 export default function NovelBody() {
   // const { user, setUser } = useUserContext();

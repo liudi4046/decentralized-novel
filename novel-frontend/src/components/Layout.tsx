@@ -9,7 +9,7 @@ export default function Layout() {
 
   useEffect(() => {
     const setUserAddress = async () => {
-      setAddress(await (user as ethers.providers.JsonRpcSigner).getAddress());
+      setAddress(await (user as ethers.JsonRpcSigner).getAddress());
     };
     if (typeof user !== "string") {
       setUserAddress();

@@ -3,6 +3,7 @@ pragma solidity ^0.8.9;
 import "./DecentralizedNovelVoteToken.sol";
 import "./DecentralizedNovelChapter.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "hardhat/console.sol";
 
 contract NovelManagement is Ownable {
     struct Submission {
@@ -41,6 +42,12 @@ contract NovelManagement is Ownable {
             !submission.voted[msg.sender],
             "You have already voted on this submission."
         );
+
+        console.log(
+            "solidity balance (decentralizedNovelVoteToken.balanceOf(msg.sender)) : %s",
+            decentralizedNovelVoteToken.balanceOf(msg.sender)
+        );
+
         require(
             decentralizedNovelVoteToken.balanceOf(msg.sender) > 50,
             "You must own enough voting token to vote."
@@ -91,6 +98,7 @@ contract NovelManagement is Ownable {
             !isVoteTokenAddressSet,
             "Vote Token address has already been set"
         );
+        console.log("voteToken address : %s", tokenAddress);
         decentralizedNovelVoteToken = DecentralizedNovelVoteToken(tokenAddress);
         isVoteTokenAddressSet = true;
     }

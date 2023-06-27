@@ -2,12 +2,12 @@ import React, { createContext, useContext, ReactNode, useState } from "react";
 
 import { ethers } from "ethers";
 
-type User = ethers.providers.JsonRpcSigner | string;
+type User = ethers.JsonRpcSigner | null;
 
 // 定义 Context 中的数据结构
 interface UserContextData {
-  user: User | string;
-  setUser: React.Dispatch<React.SetStateAction<User | string>>;
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 // 创建 Context
@@ -21,19 +21,8 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User>("");
-  // useEffect(() => {
-  //   async function getSigner() {
-  //     if (typeof window.ethereum !== "undefined") {
-  //       const provider = new ethers.BrowserProvider(window.ethereum);
-  //       const signer = await provider.getSigner();
+  const [user, setUser] = useState<User>(null);
 
-  //       setUser(signer);
-  //     }
-  //   }
-
-  //   getSigner();
-  // }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}

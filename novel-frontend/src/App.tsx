@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 
 import { UserProvider } from "./context/UserContext";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -21,11 +22,25 @@ function App() {
     )
   );
   return (
-    <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <RouterProvider router={router} />
-      </UserProvider>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <UserProvider>
+          <RouterProvider router={router} />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </UserProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 
