@@ -31,8 +31,16 @@ contract NovelManagement is Ownable {
     bool public isNFTAddressSet;
     bool public isVoteTokenAddressSet;
 
+    function hasVoted(
+        uint submissionIndex,
+        address voter
+    ) public view returns (bool) {
+        return submissions[submissionIndex].voted[voter];
+    }
+
     function vote(uint256 submissionIndex) public {
         Submission storage submission = submissions[submissionIndex];
+
         require(
             submissions[submissionIndex].targetChapterId ==
                 acceptedSubmissions.length,
@@ -43,14 +51,29 @@ contract NovelManagement is Ownable {
             "You have already voted on this submission."
         );
 
-        console.log(
-            "solidity balance (decentralizedNovelVoteToken.balanceOf(msg.sender)) : %s",
-            decentralizedNovelVoteToken.balanceOf(msg.sender)
-        );
-
         require(
             decentralizedNovelVoteToken.balanceOf(msg.sender) > 50,
             "You must own enough voting token to vote."
+        );
+        bool hasVotedSameTargetIdChapter;
+        for (uint i = submissions.length; i > 0; i--) {
+            uint index = i - 1; // adjust index
+            if (hasVoted(index, msg.sender)) {
+                if (
+                    submissions[index].targetChapterId ==
+                    submission.targetChapterId &&
+                    submissionIndex != index
+                ) {
+                    hasVotedSameTargetIdChapter = true;
+                }
+            }
+            if (index == 0) {
+                break;
+            }
+        }
+        require(
+            !hasVotedSameTargetIdChapter,
+            "You have voted a same target chapter ID submission"
         );
 
         submission.yesVotes += 1;
@@ -80,13 +103,6 @@ contract NovelManagement is Ownable {
         decentralizedNovelVoteToken.mint(msg.sender, 10);
     }
 
-    function hasVoted(
-        uint submissionIndex,
-        address voter
-    ) external view returns (bool) {
-        return submissions[submissionIndex].voted[voter];
-    }
-
     function setNFTAddress(address nftAddress) external onlyOwner {
         require(!isNFTAddressSet, "NFT address has already been set");
         decentralizedNovelChapter = DecentralizedNovelChapter(nftAddress);
@@ -98,7 +114,7 @@ contract NovelManagement is Ownable {
             !isVoteTokenAddressSet,
             "Vote Token address has already been set"
         );
-        console.log("voteToken address : %s", tokenAddress);
+
         decentralizedNovelVoteToken = DecentralizedNovelVoteToken(tokenAddress);
         isVoteTokenAddressSet = true;
     }

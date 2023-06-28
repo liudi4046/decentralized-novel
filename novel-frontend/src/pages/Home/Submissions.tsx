@@ -27,21 +27,24 @@ export default function Submissions() {
     isFetching,
     error,
     data: allSubmissions,
-  } = useQuery<SubmissionType[]>("getAllSubmissions", async () => {
-    return getAllSubmissions();
-  });
+  } = useQuery<SubmissionType[]>(
+    "getAllSubmissions",
+    async () => {
+      return getAllSubmissions();
+    },
+    {
+      enabled: !!user,
+    }
+  );
 
   const getAllSubmissions = async () => {
-    const submissionsLength = await novelManagementContract
-      .connect(user)
-      .getSubmissionsLength();
+    const submissionsLength =
+      await novelManagementContract.getSubmissionsLength();
 
     const submissionsTemp = [];
 
     for (let i = 0; i < submissionsLength; i++) {
-      const curSubmission = await novelManagementContract
-        .connect(user)
-        .submissions(i);
+      const curSubmission = await novelManagementContract.submissions(i);
       submissionsTemp.push(curSubmission);
     }
 
@@ -56,6 +59,7 @@ export default function Submissions() {
         allSubmissions?.map((submission, index) => {
           return (
             <Submission
+              key={index}
               index={index}
               content={submission[2]}
               author={submission[1]}

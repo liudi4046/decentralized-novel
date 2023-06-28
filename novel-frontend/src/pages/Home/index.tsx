@@ -9,6 +9,7 @@ import Submit from "./SubmitChapter";
 import { ToastContainer } from "react-toastify";
 import Balance from "./Balance";
 import { Provider } from "../../contracts";
+import TransferToken from "./TransferToken";
 
 export default function Home() {
   const { user, setUser } = useUserContext();
@@ -29,7 +30,9 @@ export default function Home() {
       });
 
       setUser(await Provider.getSigner());
-
+      window.ethereum.on("accountsChanged", async function () {
+        setUser(await Provider.getSigner());
+      });
       console.log("Connected accounts:", user);
     } catch (error) {
       console.log("Error on connecting MetaMask account:", error);
@@ -41,7 +44,8 @@ export default function Home() {
       <NovelBody />
       <Submissions />
       <Submit />
-      <Balance />
+
+      <TransferToken />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Submission({
   accepted,
 }: SubmissionProps) {
   return (
-    <div key={index} className="border-2 relative">
+    <div className="border-2 relative">
       <p>index:{index}</p>
       <p>content:{content}</p>
       <p>author:{author}</p>
