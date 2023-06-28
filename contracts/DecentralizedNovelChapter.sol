@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 import "./DecentralizedNovelVoteToken.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "./NovelManagement.sol";
 
-contract DecentralizedNovelChapter is ERC721 {
+contract DecentralizedNovelChapter is ERC721Enumerable {
     address public novelManagementAddress;
 
     constructor(
@@ -22,6 +22,6 @@ contract DecentralizedNovelChapter is ERC721 {
             novelManagementAddress
         );
         (address author, ) = novelManagement.acceptedSubmissions(chapterIndex);
-        _mint(author, chapterIndex);
+        _safeMint(author, chapterIndex);
     }
 }
