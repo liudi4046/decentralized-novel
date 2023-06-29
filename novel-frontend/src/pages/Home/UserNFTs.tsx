@@ -8,7 +8,7 @@ import { useUserContext } from "../../context/UserContext";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-export default function UserNFT() {
+export default function UserNFTs() {
   const { user } = useUserContext();
 
   const {

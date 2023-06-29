@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 
 import { useUserContext } from "../../context/UserContext";
-import { Alert, AlertColor, Button, Snackbar, TextField } from "@mui/material";
+import {
+  Alert,
+  AlertColor,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Snackbar,
+  TextField,
+} from "@mui/material";
 import { useQueryClient } from "react-query";
-import { novelManagementContract } from "../../contracts";
+import { novelManagementContract, voteTokenContract } from "../../contracts";
 import { toast } from "react-toastify";
 
 export default function SubmitChapter() {
@@ -23,14 +32,15 @@ export default function SubmitChapter() {
       toast.error("error");
     }
   };
+
   return (
-    <div className="">
+    <div>
       <TextField
         placeholder="enter your content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Button variant="contained" onClick={() => handleSubmit()}>
+      <Button variant="contained" onClick={handleSubmit}>
         submit
       </Button>
     </div>

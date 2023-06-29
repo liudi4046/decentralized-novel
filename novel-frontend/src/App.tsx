@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import { UserProvider } from "./context/UserContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
+import UserNFTs from "./pages/Home/UserNFTs";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="usernfts" element={<UserNFTs />} />
       </Route>
     )
   );

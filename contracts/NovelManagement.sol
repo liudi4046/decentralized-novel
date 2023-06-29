@@ -24,6 +24,7 @@ contract NovelManagement is Ownable {
         string content
     );
 
+    mapping(address => uint) Deposits;
     Submission[] public submissions;
     AcceptedSubmission[] public acceptedSubmissions;
     DecentralizedNovelVoteToken public decentralizedNovelVoteToken;
@@ -38,7 +39,7 @@ contract NovelManagement is Ownable {
         return submissions[submissionIndex].voted[voter];
     }
 
-    function vote(uint256 submissionIndex) public {
+    function vote(uint256 submissionIndex) public onlyEOA {
         Submission storage submission = submissions[submissionIndex];
 
         require(
@@ -52,9 +53,10 @@ contract NovelManagement is Ownable {
         );
 
         require(
-            decentralizedNovelVoteToken.balanceOf(msg.sender) > 50,
-            "You must own enough voting token to vote."
+            decentralizedNovelVoteToken.balanceOf(msg.sender) >= 50,
+            "You must own enough voting token (50) to vote."
         );
+
         bool hasVotedSameTargetIdChapter;
         for (uint i = submissions.length; i > 0; i--) {
             uint index = i - 1; // adjust index
@@ -76,9 +78,18 @@ contract NovelManagement is Ownable {
             "You have voted a same target chapter ID submission"
         );
 
+        require(
+            decentralizedNovelVoteToken.transferFrom(
+                msg.sender,
+                address(this),
+                50
+            ),
+            "Deposit failed"
+        );
+        Deposits[msg.sender] += 50;
         submission.yesVotes += 1;
         if (
-            submission.yesVotes * 50 >
+            submission.yesVotes * 50 >=
             decentralizedNovelVoteToken.totalSupply() / 10
         ) {
             acceptedSubmissions.push();
@@ -101,6 +112,18 @@ contract NovelManagement is Ownable {
 
         submission.voted[msg.sender] = true;
         decentralizedNovelVoteToken.mint(msg.sender, 10);
+    }
+
+    function withdraw() external onlyEOA {
+        require(
+            Deposits[msg.sender] >= 50,
+            "should have >= 50 tokens to withdraw"
+        );
+        require(
+            decentralizedNovelVoteToken.transfer(msg.sender, 50),
+            "withdraw deposit failed"
+        );
+        Deposits[msg.sender] -= 50;
     }
 
     function setNFTAddress(address nftAddress) external onlyOwner {
@@ -168,5 +191,10 @@ contract NovelManagement is Ownable {
             contents[i] = acceptedSubmissions[i].content;
         }
         return (authors, contents);
+    }
+
+    modifier onlyEOA() {
+        require(msg.sender == tx.origin, "Only EOA can call this function.");
+        _;
     }
 }

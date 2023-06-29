@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import Balance from "./Balance";
 import { Provider } from "../../contracts";
 import TransferToken from "./TransferToken";
-import UserNFT from "./UserNFT";
+import UserNFT from "./UserNFTs";
 
 export default function Home() {
   const { user, setUser } = useUserContext();
@@ -46,7 +46,6 @@ export default function Home() {
       <Submissions />
       <Submit />
       <TransferToken />
-      <UserNFT />
     </div>
   );
 }
