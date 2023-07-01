@@ -10,10 +10,12 @@ import Home from "./pages/home";
 import { UserProvider } from "./context/UserContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
-import UserNFTs from "./pages/home/UserNFTs";
+
 import Submissions from "./pages/submissions";
 import { ThemeProvider, createTheme } from "@mui/material";
 import Transfer from "./pages/transfer";
+import CreateChapter from "./pages/createChapter";
+import UserNFTs from "./pages/userNFTs";
 
 const queryClient = new QueryClient();
 
@@ -88,9 +90,10 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="usernfts" element={<UserNFTs />} />
         <Route path="submissions" element={<Submissions />} />
         <Route path="transfer" element={<Transfer />} />
+        <Route path="create-chapter" element={<CreateChapter />} />
+        <Route path="usernfts" element={<UserNFTs />} />
       </Route>
     )
   );
@@ -101,7 +104,7 @@ function App() {
           <UserProvider>
             <RouterProvider router={router} />
             <ToastContainer
-              position="top-right"
+              position="bottom-left"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

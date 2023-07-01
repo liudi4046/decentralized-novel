@@ -19,19 +19,24 @@ function MenuButton() {
     <div>
       <Button onClick={handleClick}>Menu</Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose}>
-          <Link to="transfer">Transfer Token</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          {" "}
-          <Link to="usernfts">My NFTs</Link>
-        </MenuItem>
+        <Link to="transfer">
+          <MenuItem onClick={handleClose}>Transfer Token</MenuItem>
+        </Link>
+
+        <Link to="usernfts">
+          <MenuItem onClick={handleClose}>My NFTs</MenuItem>
+        </Link>
+
         <MenuItem onClick={handleClose}>
           <WithdrawButton />
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="submissions">Submissions</Link>
-        </MenuItem>
+
+        <Link to="submissions">
+          <MenuItem onClick={handleClose}>Submissions</MenuItem>
+        </Link>
+        <Link to="create-chapter">
+          <MenuItem onClick={handleClose}>Create Chapter</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

@@ -10,13 +10,17 @@ export default function Transfer() {
 
   const [amount, setAmount] = useState("");
   const handleTransfer = async () => {
-    await (
-      await voteTokenContract.connect(user).transfer(recipient, amount)
-    ).wait();
-    toast.success("success");
+    try {
+      await (
+        await voteTokenContract.connect(user).transfer(recipient, amount)
+      ).wait();
+      toast.success("success");
+    } catch (error: any) {
+      toast.error(error.reason ?? error.message);
+    }
   };
   return (
-    <div className="flex justify-center items-center h-[500px]">
+    <div className="flex justify-center items-center h-[90vh]">
       <div className="flex flex-col w-1/4 gap-4">
         <TextField
           placeholder="amount"

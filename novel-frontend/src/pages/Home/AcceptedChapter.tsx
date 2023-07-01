@@ -1,4 +1,4 @@
-import { Popover, Typography } from "@mui/material";
+import { Popover, Typography, Button } from "@mui/material";
 import React from "react";
 
 export default function AcceptedChapter({
@@ -28,7 +28,7 @@ export default function AcceptedChapter({
         onMouseLeave={handlePopoverClose}
         display="inline"
         style={{
-          backgroundColor: open ? "#A7C9F5" : "transparent",
+          backgroundColor: open ? "#F2F2AD" : "transparent",
         }}
       >
         {content}
@@ -49,9 +49,8 @@ export default function AcceptedChapter({
           horizontal: "left",
         }}
         onClose={handlePopoverClose}
-        disableRestoreFocus
       >
-        <Typography sx={{ p: 1 }}>{author}</Typography>
+        <Typography sx={{ p: 1 }}>Author: {author}</Typography>
       </Popover>
     </>
   );

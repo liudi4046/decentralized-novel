@@ -26,9 +26,8 @@ export default function VoteButton({
         await novelManagementContract.connect(user).vote(submissionIndex)
       ).wait();
       console.log("voting");
-      toast.success("🦄 Wow so easy!");
+      toast.success("vote success");
     } catch (error: any) {
-      console.error("this", error);
       toast.error(error.reason);
     }
     setOpen(false);

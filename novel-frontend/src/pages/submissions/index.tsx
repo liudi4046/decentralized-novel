@@ -4,8 +4,9 @@ import { useQuery } from "react-query";
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
-import SubmitNewChapterButton from "./SubmitNewChapterButton";
+import SubmitNewChapterButton from "../../components/SubmitNewChapterButton";
 import { Typography } from "@mui/material";
+import NoData from "../../components/NoData";
 
 type PartialSubmissionType = [string, string, boolean, bigint] & {
   author: string;
@@ -20,7 +21,10 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
   accepted: boolean;
   yesVotes: bigint;
 };
-
+type Accumulator = {
+  prevTargetChapterId: string | null;
+  elements: JSX.Element[];
+};
 export default function Submissions() {
   const { user, currentSubmissionRound } = useUserContext();
 
@@ -55,15 +59,23 @@ export default function Submissions() {
   const currentRoundSubmissions = allSubmissions?.filter((submission) => {
     return Number(submission[0]) === currentSubmissionRound;
   });
+  const previousRoundSubmissions = allSubmissions?.filter((submission) => {
+    return Number(submission[0]) !== currentSubmissionRound;
+  });
 
   return (
-    <div className="relative min-h-[90vh]">
-      <Typography>The Current Round of Voting</Typography>
-      <div className="grid grid-cols-3 grid-flow-row gap-5">
-        {isFetching ? (
-          <p>loading...</p>
-        ) : (
-          [...(currentRoundSubmissions || [])]
+    <div className="relative min-h-[90vh] ">
+      <p className="text-center text-white text-3xl mt-16 mb-10">
+        Current Round &nbsp;(Round {currentSubmissionRound})
+      </p>
+
+      {isFetching ? (
+        <p>loading...</p>
+      ) : !currentRoundSubmissions || !currentRoundSubmissions.length ? (
+        <NoData content="There are not any submissions in current round" />
+      ) : (
+        <div className="grid grid-cols-4 grid-flow-row gap-12 ">
+          {[...(currentRoundSubmissions || [])]
             ?.reverse()
             .map((submission, index) => {
               return (
@@ -79,12 +91,36 @@ export default function Submissions() {
                   />
                 </div>
               );
-            })
-        )}
-      </div>
-      <div className="absolute right-0 bottom-0">
-        <SubmitNewChapterButton />
-      </div>
+            })}
+        </div>
+      )}
+
+      <p className="text-center text-white text-3xl mt-16 mb-10">
+        Previous Rounds
+      </p>
+      {isFetching ? (
+        <p>loading...</p>
+      ) : !previousRoundSubmissions || !previousRoundSubmissions.length ? (
+        <NoData content="There are not any submissions in previous rounds" />
+      ) : (
+        <div className="grid grid-cols-4 grid-flow-row gap-12 ">
+          {[...previousRoundSubmissions]?.reverse().map((submission, index) => {
+            return (
+              <div className="flex justify-center">
+                <SubmissionCard
+                  key={index}
+                  index={(allSubmissions?.length as number) - 1 - index}
+                  content={submission[2]}
+                  author={submission[1]}
+                  targetChapterId={submission[0].toString()}
+                  yesVotes={submission[4].toString()}
+                  accepted={submission[3] ? "true" : "false"}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -29,8 +29,7 @@ export default function NovelBody() {
   );
 
   return (
-    <div className="w-1/3 bg-slate-300 h-80">
-      NovelBody:
+    <div className="w-2/5 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400">
       {data?.chapters.map((chapter, index) => {
         return (
           <span key={index}>

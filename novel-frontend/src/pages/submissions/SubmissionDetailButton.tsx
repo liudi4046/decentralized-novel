@@ -55,7 +55,8 @@ export default function SubmissionDetailButton({
       >
         <DialogContent>
           <p>{content}</p>
-          <p className="w-fit ml-auto">Written by:{author}</p>
+          <br />
+          <p className="w-fit ml-auto">Author:{author}</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

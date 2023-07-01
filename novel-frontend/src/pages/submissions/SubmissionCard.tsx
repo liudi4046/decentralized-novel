@@ -19,9 +19,12 @@ export default function Submission({
 }: SubmissionProps) {
   return (
     <div className="card text-white">
-      <p className="index w-fit text-xl"># {index}</p>
+      <p className="w-full text-xl flex justify-between">
+        <p className="font-bold">Round {targetChapterId}</p>
+        <p className="font-normal"># {index}</p>
+      </p>
       <p className="index w-fit text-xl">Vote Count: {yesVotes}</p>
-      <p className="text-xl line-clamp-3 mt-2">{content}</p>
+      <p className="text-xl line-clamp-3 mt-5 font-light">{content}</p>
       <div>
         <div className="w-fit ml-auto">
           <SubmissionDetailButton author={author} content={content} />{" "}

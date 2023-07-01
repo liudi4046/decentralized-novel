@@ -29,23 +29,26 @@ export default function Navbar() {
   }, [user]);
 
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Home</Link>
-          </Typography>
-          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-            My Address: {address}
-          </Typography>
+    <AppBar position="sticky">
+      <Toolbar>
+        <Typography
+          variant="body1"
+          component="div"
+          sx={{ flexGrow: 1 }}
+          className="hover:text-blue-300"
+        >
+          <Link to="/">Home</Link>
+        </Typography>
+        <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
+          My Address: {address}
+        </Typography>
 
-          <div style={{ flexGrow: 1 }}>
-            <Balance />
-          </div>
+        <div style={{ flexGrow: 1 }}>
+          <Balance />
+        </div>
 
-          <MenuButton />
-        </Toolbar>
-      </AppBar>
-    </div>
+        <MenuButton />
+      </Toolbar>
+    </AppBar>
   );
 }

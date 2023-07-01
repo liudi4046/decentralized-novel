@@ -2,15 +2,12 @@
 @tailwind components;
 html {
   background: linear-gradient(120deg, #2e4d85, #1e1e1e);
-
-  height: 100%;
-  overflow: hidden;
 }
 
 /* 添加你的自定义CSS样式 */
 .card {
-  width: 400px;
-  height: 280px;
+  width: 310px;
+  height: 290px;
   position: relative;
   border-radius: 40px;
   padding: 30px;
@@ -27,7 +24,7 @@ html {
   right: -300px;
   bottom: -300px;
   left: -300px;
-  background: radial-gradient(circle at center, #1a2a6c, #000000 100%);
+  background: radial-gradient(circle at center, #3671d7, #000000 100%);
   filter: blur(30px);
   z-index: -1;
 }
