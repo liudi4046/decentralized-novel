@@ -2,9 +2,9 @@ import { ethers } from "ethers";
 import NovelManagement from "./abi/NovelManagement.json";
 import VoteToken from "./abi/DecentralizedNovelVoteToken.json";
 import NFTContractABI from "./abi/DecentralizedNovelChapter.json";
-import { NovelManagement as NovelManagementType } from "../../typechain";
-import { DecentralizedNovelChapter } from "../../typechain";
-import { DecentralizedNovelVoteToken } from "../../typechain";
+import { NovelManagement as NovelManagementType } from "../typechain";
+import { DecentralizedNovelChapter } from "../typechain";
+import { DecentralizedNovelVoteToken } from "../typechain";
 
 export const Provider = new ethers.BrowserProvider(window.ethereum);
 const novelManagementContractAddress =

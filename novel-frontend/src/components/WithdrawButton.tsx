@@ -1,11 +1,10 @@
-import React from "react";
 import { novelManagementContract } from "../contracts";
 import { useUserContext } from "../context/UserContext";
-import { Button } from "@mui/material";
+
 import { toast } from "react-toastify";
 
 export default function WithdrawButton() {
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
 
   const handleWithdraw = async () => {
     try {
