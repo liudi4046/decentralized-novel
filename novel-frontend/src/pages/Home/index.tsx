@@ -4,13 +4,14 @@ import { useUserContext } from "../../context/UserContext";
 import { ethers } from "ethers";
 import NovelManagement from "../../abi/NovelManagement.json";
 import { NovelManagement as NovelManagementType } from "../../../../typechain";
-import Submissions from "./Submissions";
-import Submit from "./SubmitChapter";
+
 import { ToastContainer } from "react-toastify";
 import Balance from "./Balance";
 import { Provider } from "../../contracts";
-import TransferToken from "./TransferToken";
+import TransferToken from "../transfer";
 import UserNFT from "./UserNFTs";
+import WithdrawButton from "../../components/WithdrawButton";
+import Submissions from "../submissions";
 
 export default function Home() {
   const { user, setUser } = useUserContext();
@@ -43,9 +44,6 @@ export default function Home() {
   return (
     <div className="flex ">
       <NovelBody />
-      <Submissions />
-      <Submit />
-      <TransferToken />
     </div>
   );
 }

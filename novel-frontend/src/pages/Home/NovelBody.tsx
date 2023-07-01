@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/UserContext";
 import { novelManagementContract } from "../../contracts";
 import { useState } from "react";
 import AcceptedChapter from "./AcceptedChapter";
+import { toast } from "react-toastify";
 
 export default function NovelBody() {
   // const { user, setUser } = useUserContext();
@@ -11,13 +12,19 @@ export default function NovelBody() {
   // });
   // const [content,setContent] = useState("")
   // const [author,setAuthor] = useState("")
+  const { setCurrentSubmissionRound } = useUserContext();
 
   const { data, isLoading, error } = useQuery(
     "getAcceptedSubmissions",
     async () => {
-      const [authors, chapters] =
-        await novelManagementContract.getAcceptedSubmissions();
-      return { chapters, authors };
+      try {
+        const [authors, chapters] =
+          await novelManagementContract.getAcceptedSubmissions();
+        setCurrentSubmissionRound(chapters.length);
+        return { chapters, authors };
+      } catch (error: any) {
+        toast.error("failed");
+      }
     }
   );
 

@@ -35,7 +35,25 @@ export default function VoteButton({
   };
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button
+        sx={{
+          backgroundColor: "inherit !important",
+          color: "#fff",
+          borderRadius: "20px",
+          padding: "10px 20px",
+          fontSize: "16px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
+          border: 1,
+          transition: "all 0.3s ease",
+          filter: "brightness(0.7) !important",
+          "&:hover": {
+            filter: "brightness(1) !important",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.5)",
+          },
+        }}
+        variant="contained"
+        onClick={() => setOpen(true)}
+      >
         vote
       </Button>
       <Dialog
@@ -45,7 +63,8 @@ export default function VoteButton({
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          you need 50 tokens for deposit to vote. proceed with the voting?
+          You need a deposit of 50 tokens to vote. Once the round of voting
+          ends, you can withdraw your 50 tokens. Proceed with the voting?
         </DialogTitle>
 
         <DialogActions>

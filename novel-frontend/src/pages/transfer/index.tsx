@@ -4,7 +4,7 @@ import { voteTokenContract } from "../../contracts";
 import { toast } from "react-toastify";
 import { useUserContext } from "../../context/UserContext";
 
-export default function TransferToken() {
+export default function Transfer() {
   const [recipient, setRecipient] = useState("");
   const { user } = useUserContext();
 
@@ -16,20 +16,22 @@ export default function TransferToken() {
     toast.success("success");
   };
   return (
-    <div>
-      <TextField
-        placeholder="amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-      <TextField
-        placeholder="recipient"
-        value={recipient}
-        onChange={(e) => setRecipient(e.target.value)}
-      />
-      <Button onClick={handleTransfer} variant="contained">
-        transfer
-      </Button>
+    <div className="flex justify-center items-center h-[500px]">
+      <div className="flex flex-col w-1/4 gap-4">
+        <TextField
+          placeholder="amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <TextField
+          placeholder="recipient"
+          value={recipient}
+          onChange={(e) => setRecipient(e.target.value)}
+        />
+        <Button onClick={handleTransfer} variant="contained">
+          transfer
+        </Button>
+      </div>
     </div>
   );
 }

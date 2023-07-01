@@ -8,6 +8,10 @@ type User = ethers.JsonRpcSigner | null;
 interface UserContextData {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  currentSubmissionRound: number | null;
+  setCurrentSubmissionRound: React.Dispatch<
+    React.SetStateAction<number | null>
+  >;
 }
 
 // 创建 Context
@@ -22,9 +26,18 @@ interface UserProviderProps {
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>(null);
-
+  const [currentSubmissionRound, setCurrentSubmissionRound] = useState<
+    number | null
+  >(null);
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        currentSubmissionRound,
+        setCurrentSubmissionRound,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
