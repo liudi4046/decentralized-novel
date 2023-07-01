@@ -4,16 +4,9 @@ import { useQuery } from "react-query";
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
-import SubmitNewChapterButton from "../../components/SubmitNewChapterButton";
-import { Typography } from "@mui/material";
+
 import NoData from "../../components/NoData";
 
-type PartialSubmissionType = [string, string, boolean, bigint] & {
-  author: string;
-  content: string;
-  accepted: boolean;
-  yesVotes: bigint;
-};
 type SubmissionType = [bigint, string, string, boolean, bigint] & {
   targetChapterId: bigint;
   author: string;
@@ -21,17 +14,13 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
   accepted: boolean;
   yesVotes: bigint;
 };
-type Accumulator = {
-  prevTargetChapterId: string | null;
-  elements: JSX.Element[];
-};
+
 export default function Submissions() {
   const { user, currentSubmissionRound } = useUserContext();
 
   const {
-    isLoading,
     isFetching,
-    error,
+
     data: allSubmissions,
   } = useQuery<SubmissionType[]>(
     "getAllSubmissions",

@@ -1,6 +1,5 @@
-import React from "react";
-import { Box, Typography, colors } from "@mui/material";
-import { Warning, CloudOff } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
+import { CloudOff } from "@mui/icons-material";
 
 const NoData = ({ content }: { content: string }) => {
   return (

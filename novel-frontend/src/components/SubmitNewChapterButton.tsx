@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useUserContext } from "../context/UserContext";
 import {
-  Alert,
-  AlertColor,
   Button,
   Dialog,
   DialogActions,
-  DialogContent,
-  DialogContentText,
   DialogTitle,
-  Snackbar,
   TextField,
 } from "@mui/material";
 import { useQueryClient } from "react-query";
-import { novelManagementContract, voteTokenContract } from "../contracts";
+import { novelManagementContract } from "../contracts";
 import { toast } from "react-toastify";
 
 export default function SubmitNewChapterButton() {

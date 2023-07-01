@@ -1,15 +1,7 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 
-import { useUserContext } from "../../context/UserContext";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { novelManagementContract, voteTokenContract } from "../../contracts";
+
 import { useState } from "react";
 
 export default function SubmissionDetailButton({

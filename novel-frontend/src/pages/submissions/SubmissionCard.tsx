@@ -15,7 +15,6 @@ export default function Submission({
   author,
   targetChapterId,
   yesVotes,
-  accepted,
 }: SubmissionProps) {
   return (
     <div className="card text-white">

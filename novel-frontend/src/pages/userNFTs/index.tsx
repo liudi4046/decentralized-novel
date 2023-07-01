@@ -1,9 +1,4 @@
-import React from "react";
-import {
-  nftContract,
-  novelManagementContract,
-  voteTokenContract,
-} from "../../contracts";
+import { nftContract, novelManagementContract } from "../../contracts";
 import { useUserContext } from "../../context/UserContext";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
@@ -13,11 +8,7 @@ import Loading from "../../components/Loading";
 export default function UserNFTs() {
   const { user } = useUserContext();
 
-  const {
-    data: nfts,
-    isLoading,
-    error,
-  } = useQuery("getNFTs", async () => {
+  const { data: nfts, isLoading } = useQuery("getNFTs", async () => {
     if (user) {
       try {
         const nfts: { tokenId: string; content: string }[] = [];

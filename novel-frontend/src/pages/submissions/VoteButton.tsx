@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 
 import { useUserContext } from "../../context/UserContext";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { novelManagementContract, voteTokenContract } from "../../contracts";
 import { useState } from "react";
@@ -11,7 +11,7 @@ export default function VoteButton({
 }: {
   submissionIndex: number;
 }) {
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {

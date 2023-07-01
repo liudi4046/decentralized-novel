@@ -1,18 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Popper,
-  ClickAwayListener,
-  Paper,
-  TextField,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Balance from "../pages/home/Balance";
-import TransferToken from "../pages/transfer";
+
 import MenuButton from "./MenuButton";
 
 export default function Navbar() {

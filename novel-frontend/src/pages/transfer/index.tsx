@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { voteTokenContract } from "../../contracts";
 import { toast } from "react-toastify";
 import { useUserContext } from "../../context/UserContext";
