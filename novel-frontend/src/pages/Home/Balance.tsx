@@ -16,5 +16,9 @@ export default function Balance() {
     }
   });
 
-  return <div>Balance:{balance}</div>;
+  return (
+    <div className="flex">
+      Token Balance:&nbsp;<div className="flex font-bold">{balance}</div>
+    </div>
+  );
 }

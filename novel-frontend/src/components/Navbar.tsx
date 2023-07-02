@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import Balance from "../pages/home/Balance";
 
 import MenuButton from "./MenuButton";
+import { Provider } from "../contracts";
 
 export default function Navbar() {
-  const { user } = useUserContext();
+  const { user, setUser } = useUserContext();
   const [address, setAddress] = useState<string | undefined>("");
 
   useEffect(() => {
@@ -19,26 +20,46 @@ export default function Navbar() {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (typeof window.ethereum !== "undefined") {
+      connectMetaMask();
+    } else {
+      alert("Please install MetaMask!");
+    }
+  }, []);
+
+  const connectMetaMask = async () => {
+    try {
+      await window?.ethereum?.request({
+        method: "eth_requestAccounts",
+      });
+
+      setUser(await Provider.getSigner());
+      window.ethereum.on("accountsChanged", async function () {
+        setUser(await Provider.getSigner());
+      });
+    } catch (error) {
+      console.log("Error on connecting MetaMask account:", error);
+    }
+  };
+
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <Typography
-          variant="body1"
-          component="div"
-          sx={{ flexGrow: 1 }}
-          className="hover:text-blue-300"
-        >
-          <Link to="/">Home</Link>
-        </Typography>
-        <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-          My Address: {address}
-        </Typography>
+        <div className="flex flex-col ">
+          <div className="flex ">
+            My Address: &nbsp;<p className="font-bold">{address}</p>
+          </div>
 
-        <div style={{ flexGrow: 1 }}>
           <Balance />
         </div>
+        <div className="w-fit ml-auto flex gap-5 items-center">
+          <div className="hover:text-blue-300">
+            <Link to="/">Home</Link>
+          </div>
 
-        <MenuButton />
+          <MenuButton />
+        </div>
       </Toolbar>
     </AppBar>
   );

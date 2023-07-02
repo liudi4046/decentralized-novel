@@ -5,32 +5,7 @@ import { useUserContext } from "../../context/UserContext";
 import { Provider } from "../../contracts";
 
 export default function Home() {
-  const { user, setUser } = useUserContext();
-
-  useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
-      console.log("MetaMask is installed!");
-      connectMetaMask();
-    } else {
-      console.log("Please install MetaMask!");
-    }
-  }, []);
-
-  const connectMetaMask = async () => {
-    try {
-      await window?.ethereum?.request({
-        method: "eth_requestAccounts",
-      });
-
-      setUser(await Provider.getSigner());
-      window.ethereum.on("accountsChanged", async function () {
-        setUser(await Provider.getSigner());
-      });
-      console.log("Connected accounts:", user);
-    } catch (error) {
-      console.log("Error on connecting MetaMask account:", error);
-    }
-  };
+  // const { user, setUser } = useUserContext();
 
   return (
     <div className="flex h-[90vh] justify-center">

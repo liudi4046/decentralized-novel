@@ -1,4 +1,10 @@
-import React, { createContext, useContext, ReactNode, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 
 import { ethers } from "ethers";
 
@@ -28,7 +34,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>(null);
   const [currentSubmissionRound, setCurrentSubmissionRound] = useState<
     number | null
-  >(null);
+  >(() => {
+    const savedValue = window.localStorage.getItem("currentSubmissionRound");
+    return savedValue !== null ? JSON.parse(savedValue) : null;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "currentSubmissionRound",
+      JSON.stringify(currentSubmissionRound)
+    );
+  }, [currentSubmissionRound]);
+
   return (
     <UserContext.Provider
       value={{

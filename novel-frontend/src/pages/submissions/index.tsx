@@ -1,6 +1,6 @@
 import { useUserContext } from "../../context/UserContext";
 
-import { useQuery } from "react-query";
+import { QueryClient, useQuery } from "react-query";
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
@@ -14,37 +14,34 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
   accepted: boolean;
   yesVotes: bigint;
 };
+const getAllSubmissions = async () => {
+  console.log("getAllSubmissions");
+  const submissionsLength =
+    await novelManagementContract.getSubmissionsLength();
 
+  const submissionsTemp = [];
+
+  for (let i = 0; i < submissionsLength; i++) {
+    const curSubmission = await novelManagementContract.submissions(i);
+    submissionsTemp.push(curSubmission);
+  }
+
+  return [...submissionsTemp];
+};
 export default function Submissions() {
   const { user, currentSubmissionRound } = useUserContext();
-
-  const {
-    isFetching,
-
-    data: allSubmissions,
-  } = useQuery<SubmissionType[]>(
+  const queryClient = new QueryClient();
+  const { isFetching, data: allSubmissions } = useQuery<SubmissionType[]>(
     "getAllSubmissions",
     async () => {
       return getAllSubmissions();
     },
     {
       enabled: !!user,
+      staleTime: 1000 * 60 * 1,
     }
   );
 
-  const getAllSubmissions = async () => {
-    const submissionsLength =
-      await novelManagementContract.getSubmissionsLength();
-
-    const submissionsTemp = [];
-
-    for (let i = 0; i < submissionsLength; i++) {
-      const curSubmission = await novelManagementContract.submissions(i);
-      submissionsTemp.push(curSubmission);
-    }
-
-    return [...submissionsTemp];
-  };
   const currentRoundSubmissions = allSubmissions?.filter((submission) => {
     return Number(submission[0]) === currentSubmissionRound;
   });
@@ -52,6 +49,7 @@ export default function Submissions() {
     return Number(submission[0]) !== currentSubmissionRound;
   });
 
+  console.log("currentSubmissionRound", currentSubmissionRound);
   return (
     <div className="relative min-h-[90vh] ">
       <p className="text-center text-white text-3xl mt-16 mb-10">
@@ -68,7 +66,7 @@ export default function Submissions() {
             ?.reverse()
             .map((submission, index) => {
               return (
-                <div className="flex justify-center">
+                <div className="flex justify-center" key={index}>
                   <SubmissionCard
                     key={index}
                     index={(allSubmissions?.length as number) - 1 - index}
@@ -92,10 +90,10 @@ export default function Submissions() {
       ) : !previousRoundSubmissions || !previousRoundSubmissions.length ? (
         <NoData content="There are not any submissions in previous rounds" />
       ) : (
-        <div className="grid grid-cols-4 grid-flow-row gap-12 ">
+        <div className="grid grid-cols-4 grid-flow-row gap-12 mb-5">
           {[...previousRoundSubmissions]?.reverse().map((submission, index) => {
             return (
-              <div className="flex justify-center">
+              <div className="flex justify-center" key={index}>
                 <SubmissionCard
                   key={index}
                   index={(allSubmissions?.length as number) - 1 - index}

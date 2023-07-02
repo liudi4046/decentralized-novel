@@ -18,10 +18,10 @@ export default function Submission({
 }: SubmissionProps) {
   return (
     <div className="card text-white">
-      <p className="w-full text-xl flex justify-between">
+      <section className="w-full text-xl flex justify-between">
         <p className="font-bold">Round {targetChapterId}</p>
         <p className="font-normal"># {index}</p>
-      </p>
+      </section>
       <p className="index w-fit text-xl">Vote Count: {yesVotes}</p>
       <p className="text-xl line-clamp-3 mt-5 font-light">{content}</p>
       <div>

@@ -6,16 +6,12 @@ import AcceptedChapter from "./AcceptedChapter";
 import { toast } from "react-toastify";
 
 export default function NovelBody() {
-  // const { user, setUser } = useUserContext();
-  // const { data, isLoading, error } = useQuery([""], async () => {
-  //   return contract.connect(user).submit("helo");
-  // });
-  // const [content,setContent] = useState("")
-  // const [author,setAuthor] = useState("")
-  const { setCurrentSubmissionRound } = useUserContext();
+  const { setCurrentSubmissionRound, currentSubmissionRound } =
+    useUserContext();
 
   const { data } = useQuery("getAcceptedSubmissions", async () => {
     try {
+      console.log("getAcceptedSubmissions");
       const [authors, chapters] =
         await novelManagementContract.getAcceptedSubmissions();
       setCurrentSubmissionRound(chapters.length);
@@ -24,6 +20,7 @@ export default function NovelBody() {
       toast.error("failed");
     }
   });
+  console.log("currentSubmissionRound", currentSubmissionRound);
 
   return (
     <div className="w-2/5 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400">

@@ -24,7 +24,7 @@ contract NovelManagement is Ownable {
         string content
     );
 
-    mapping(address => uint) Deposits;
+    mapping(address => uint[]) deposits;
     Submission[] public submissions;
     AcceptedSubmission[] public acceptedSubmissions;
     DecentralizedNovelVoteToken public decentralizedNovelVoteToken;
@@ -86,7 +86,7 @@ contract NovelManagement is Ownable {
             ),
             "Deposit failed"
         );
-        Deposits[msg.sender] += 50;
+        deposits[msg.sender].push(acceptedSubmissions.length);
         submission.yesVotes += 1;
         if (
             submission.yesVotes * 50 >=
@@ -116,14 +116,21 @@ contract NovelManagement is Ownable {
 
     function withdraw() external onlyEOA {
         require(
-            Deposits[msg.sender] >= 50,
-            "should have >= 50 tokens to withdraw"
+            deposits[msg.sender].length > 0,
+            "should have tokens to withdraw"
+        );
+        uint[] storage deposit = deposits[msg.sender];
+        uint userLatestVoteRound = deposit[deposit.length - 1];
+
+        require(
+            acceptedSubmissions.length - 1 >= userLatestVoteRound,
+            "The latest voting round has not finished yet"
         );
         require(
             decentralizedNovelVoteToken.transfer(msg.sender, 50),
             "withdraw deposit failed"
         );
-        Deposits[msg.sender] -= 50;
+        deposit.pop();
     }
 
     function setNFTAddress(address nftAddress) external onlyOwner {
