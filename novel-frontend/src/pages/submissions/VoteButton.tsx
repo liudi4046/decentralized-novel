@@ -5,15 +5,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { novelManagementContract, voteTokenContract } from "../../contracts";
 import { useState } from "react";
-import { QueryClient } from "react-query";
+import { useQueryClient } from "react-query";
+import { getAcceptedSubmissions } from "../home/NovelBody";
 
 export default function VoteButton({
   submissionIndex,
 }: {
   submissionIndex: number;
 }) {
-  const { user } = useUserContext();
-  const queryClient = new QueryClient();
+  const { user, setCurrentSubmissionRound } = useUserContext();
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -27,8 +27,7 @@ export default function VoteButton({
         await novelManagementContract.connect(user).vote(submissionIndex)
       ).wait();
 
-      await queryClient.invalidateQueries("getAcceptedSubmissions");
-      queryClient.invalidateQueries("getAllSubmissions");
+      getAcceptedSubmissions(setCurrentSubmissionRound);
       toast.success("vote success");
     } catch (error: any) {
       toast.error(error.reason);

@@ -34,7 +34,6 @@ export default function CreateChapter() {
           onChange={(e) => setContent(e.target.value)}
           multiline
           rows={16}
-          maxRows={16}
           fullWidth
           placeholder="Enter your content"
           autoFocus

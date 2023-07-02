@@ -49,7 +49,6 @@ export default function SubmitNewChapterButton() {
             onChange={(e) => setContent(e.target.value)}
             multiline
             rows={5}
-            maxRows={8}
             fullWidth
           />
         </div>

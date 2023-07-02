@@ -12,6 +12,7 @@
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@openzeppelin/contracts": "^4.9.2",
+    "@tanstack/react-query-devtools": "^4.29.19",
     "ethers": "^6.6.1"
   },
   "devDependencies": {

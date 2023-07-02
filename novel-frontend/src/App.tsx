@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/home";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import { UserProvider } from "./context/UserContext";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -116,6 +117,7 @@ function App() {
               theme="light"
             />
           </UserProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ThemeProvider>
     </>

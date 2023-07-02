@@ -1,6 +1,6 @@
 import { useUserContext } from "../../context/UserContext";
 
-import { QueryClient, useQuery } from "react-query";
+import { QueryClient, useQuery, useQueryClient } from "react-query";
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
@@ -30,15 +30,12 @@ const getAllSubmissions = async () => {
 };
 export default function Submissions() {
   const { user, currentSubmissionRound } = useUserContext();
-  const queryClient = new QueryClient();
+
   const { isFetching, data: allSubmissions } = useQuery<SubmissionType[]>(
     "getAllSubmissions",
-    async () => {
-      return getAllSubmissions();
-    },
+    getAllSubmissions,
     {
       enabled: !!user,
-      staleTime: 1000 * 60 * 1,
     }
   );
 
@@ -49,7 +46,7 @@ export default function Submissions() {
     return Number(submission[0]) !== currentSubmissionRound;
   });
 
-  console.log("currentSubmissionRound", currentSubmissionRound);
+  console.log("currentSubmissionRound in submissions", currentSubmissionRound);
   return (
     <div className="relative min-h-[90vh] ">
       <p className="text-center text-white text-3xl mt-16 mb-10">
