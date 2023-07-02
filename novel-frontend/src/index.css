@@ -24,6 +24,7 @@ html {
   right: -300px;
   bottom: -300px;
   left: -300px;
+
   background: radial-gradient(circle at center, #3671d7, #000000 100%);
   filter: blur(30px);
   z-index: -1;
@@ -55,6 +56,40 @@ html {
 .custom-vote-button:hover {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nftcard {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border-radius: 40px;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.8),
+    0px 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.nftcard::after {
+  content: "";
+  position: absolute;
+  top: -300px;
+  right: -300px;
+  bottom: -300px;
+  left: -300px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #12001b -97.5deg,
+    #000000 14.05deg,
+    #040eff 54.01deg,
+    #8000ff 113.42deg,
+    #00b6b6 185.62deg,
+    #12001b 262.5deg,
+    #000000 374.05deg
+  );
+  filter: blur(60px) brightness(1.5);
+  z-index: -1;
+  animation: 30s move linear infinite;
 }
 
 @keyframes move {

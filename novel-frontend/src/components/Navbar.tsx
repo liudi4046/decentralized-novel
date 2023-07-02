@@ -24,7 +24,7 @@ export default function Navbar() {
     if (typeof window.ethereum !== "undefined") {
       connectMetaMask();
     } else {
-      alert("Please install MetaMask!");
+      alert("Please install MetaMask first!");
     }
   }, []);
 

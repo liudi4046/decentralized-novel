@@ -29,6 +29,7 @@ export default function AcceptedChapter({
         display="inline"
         style={{
           backgroundColor: open ? "#F2F2AD" : "transparent",
+          fontSize: "1.2rem",
         }}
       >
         {content}

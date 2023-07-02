@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import NoData from "../../components/NoData";
 import Loading from "../../components/Loading";
+import NFTCard from "./NFTCard";
 
 export default function UserNFTs() {
   const { user } = useUserContext();
@@ -33,22 +34,23 @@ export default function UserNFTs() {
   });
   console.log("nfts", nfts);
   return (
-    <div className="h-[90vh] ">
-      {isLoading ? (
-        <Loading />
-      ) : !nfts || nfts.length === 0 ? (
-        <div className="h-[90vh] flex justify-center items-center">
-          {" "}
-          <NoData content="You have not owned any NFTs" />
-        </div>
-      ) : (
-        nfts?.map((nft) => (
-          <div>
-            <div>tokenId: {nft.tokenId}</div>
-            <div>content: {nft.content}</div>
+    <div className="h-[90vh] p-10">
+      <p className="text-5xl text-gray-200 text-center">My NFTs</p>
+      <div className="grid-cols-3 grid m-10 place-items-center">
+        {isLoading ? (
+          <Loading isLoading={isLoading} />
+        ) : !nfts || nfts.length === 0 ? (
+          <div className="col-span-3 mt-20">
+            <NoData content="You have not owned any NFTs" />
           </div>
-        ))
-      )}
+        ) : (
+          nfts?.map((nft) => (
+            <div className="flex justify-center">
+              <NFTCard id={nft.tokenId} content={nft.content} />
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

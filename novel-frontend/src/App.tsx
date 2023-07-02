@@ -17,6 +17,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import Transfer from "./pages/transfer";
 import CreateChapter from "./pages/createChapter";
 import UserNFTs from "./pages/userNFTs";
+import HelperDialog from "./components/HelperDialog";
 
 const queryClient = new QueryClient();
 
@@ -116,6 +117,16 @@ function App() {
               pauseOnHover
               theme="light"
             />
+            <div
+              style={{
+                position: "fixed",
+                right: "20px",
+                bottom: "20px",
+                zIndex: "9999",
+              }}
+            >
+              <HelperDialog />
+            </div>
           </UserProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

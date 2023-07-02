@@ -6,6 +6,7 @@ import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
 
 import NoData from "../../components/NoData";
+import Loading from "../../components/Loading";
 
 type SubmissionType = [bigint, string, string, boolean, bigint] & {
   targetChapterId: bigint;
@@ -48,13 +49,13 @@ export default function Submissions() {
 
   console.log("currentSubmissionRound in submissions", currentSubmissionRound);
   return (
-    <div className="relative min-h-[90vh] ">
+    <div className="relative min-h-[90vh] w-[90%] mx-auto">
       <p className="text-center text-white text-3xl mt-16 mb-10">
         Current Round &nbsp;(Round {currentSubmissionRound})
       </p>
 
       {isFetching ? (
-        <p>loading...</p>
+        <Loading isLoading={isFetching} />
       ) : !currentRoundSubmissions || !currentRoundSubmissions.length ? (
         <NoData content="There are not any submissions in current round" />
       ) : (
@@ -83,7 +84,7 @@ export default function Submissions() {
         Previous Rounds
       </p>
       {isFetching ? (
-        <p>loading...</p>
+        <Loading isLoading={isFetching} />
       ) : !previousRoundSubmissions || !previousRoundSubmissions.length ? (
         <NoData content="There are not any submissions in previous rounds" />
       ) : (
