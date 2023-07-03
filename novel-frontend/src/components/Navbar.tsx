@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import { AppBar, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
-import Balance from "../pages/home/Balance";
+import Balance from "./Balance";
 
 import MenuButton from "./MenuButton";
 import { Provider } from "../contracts";

@@ -94,6 +94,21 @@ const HelperDialog = () => {
               <br />
             </div>
           ))}
+          <Divider style={{ backgroundColor: "white", height: "2px" }} />
+          <br />
+          <div className="flex flex-col gap-5">
+            <p>All contracts are deployed on Goerli test network</p>
+            <p>
+              Token Contract Address: 0xc1836e805D2d6F8eCcBe07cbb356d3336C9AEb61
+            </p>
+            <p>
+              NFT Contract Address: 0xc64f5324507C9A1c0d2735062aC4137994d5E410
+            </p>
+            <p>
+              Management Contract Address:
+              0x98ce973C84FF9cbf6987e0C3225954F70eC04332
+            </p>
+          </div>
         </DialogContent>
       </Dialog>
     </>

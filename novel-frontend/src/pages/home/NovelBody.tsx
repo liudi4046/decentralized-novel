@@ -16,7 +16,13 @@ export const getAcceptedSubmissions = async (
     setCurrentSubmissionRound(chapters.length);
     return { chapters, authors };
   } catch (error: any) {
-    toast.error("failed");
+    console.error(error);
+    if (error.message.includes("could not decode result data")) {
+      toast.error("Metamask should be connected to goerli test network");
+      return;
+    }
+    console.log(error.message);
+    toast.error(error.reason ?? error.message);
   }
 };
 
@@ -36,7 +42,6 @@ export default function NovelBody() {
         return (
           <span key={index}>
             <AcceptedChapter content={chapter} author={data.authors[index]} />
-            {/* chapter:{chapter} author:{data.authors[index]} */}
           </span>
         );
       })}
