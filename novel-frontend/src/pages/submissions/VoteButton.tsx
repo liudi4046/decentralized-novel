@@ -1,11 +1,15 @@
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-
+import {
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+} from "@mui/material";
 import { useUserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { novelManagementContract, voteTokenContract } from "../../contracts";
 import { useState } from "react";
-import { useQueryClient } from "react-query";
 import { getAcceptedSubmissions } from "../home/NovelBody";
 
 export default function VoteButton({
@@ -15,22 +19,76 @@ export default function VoteButton({
 }) {
   const { user, setCurrentSubmissionRound } = useUserContext();
   const [open, setOpen] = useState(false);
+
   const handleClose = () => {
     setOpen(false);
   };
   const handleConfirm = async () => {
     try {
-      await voteTokenContract
+      const approveTransaction = await voteTokenContract
         .connect(user)
         .approve(await novelManagementContract.getAddress(), 50);
-      await (
-        await novelManagementContract.connect(user).vote(submissionIndex)
-      ).wait();
+
+      await toast.promise(approveTransaction.wait(), {
+        pending: {
+          render() {
+            return (
+              <div className="flex gap-3">
+                <CircularProgress size={24} />
+                <p> The approving transaction is pending...</p>
+              </div>
+            );
+          },
+          icon: false,
+        },
+        success: {
+          render() {
+            return "approving succeeded!";
+          },
+
+          icon: "🟢",
+        },
+        error: {
+          render() {
+            return "approving failed";
+          },
+        },
+      });
+
+      const voteTransaction = await novelManagementContract
+        .connect(user)
+        .vote(submissionIndex);
+
+      await toast.promise(voteTransaction.wait(), {
+        pending: {
+          render() {
+            return (
+              <div className="flex gap-3">
+                <CircularProgress size={24} />
+                <p> The voting transaction is pending...</p>
+              </div>
+            );
+          },
+          icon: false,
+        },
+        success: {
+          render() {
+            return "Voting succeeded!";
+          },
+
+          icon: "🟢",
+        },
+        error: {
+          render() {
+            return "Voting failed";
+          },
+        },
+      });
 
       getAcceptedSubmissions(setCurrentSubmissionRound);
-      toast.success("vote success");
     } catch (error: any) {
-      toast.error(error.reason);
+      console.log(error);
+      toast.error(error.reason ?? error.message);
     }
     setOpen(false);
   };

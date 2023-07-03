@@ -1,13 +1,5 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Divider,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { useState } from "react";
+import { Dialog, DialogContent, Divider, IconButton } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 
 const HelperDialog = () => {
@@ -25,16 +17,16 @@ const HelperDialog = () => {
     {
       question: "What is this?",
       answer:
-        "This is a decentralized novel project. Everyone can contribute to the story.",
+        "This is a decentralized novel application. Everyone can contribute to the novel.",
     },
     {
-      question: "How do I submit my contribution?",
-      answer: "All users can submit their storylines or plot twists.",
+      question: "Who can contribute?",
+      answer: "All users can contribute to the novel",
     },
     {
       question: "Whose contribution will be accepted?",
       answer:
-        "Users who hold more than 50 Tokens can vote. When the vote count reaches a certain threshold, the proposed storyline or plot twist will be automatically accepted into the evolving novel.",
+        "When the vote count reaches a certain threshold, the proposed contribution will be automatically accepted into the novel. As the number of voters increases, more votes are needed to adopt an contribution",
     },
     {
       question: "What are the rewards for voting and contributing?",
@@ -44,7 +36,7 @@ const HelperDialog = () => {
     {
       question: "What are the restrictions on voting?",
       answer:
-        "When users vote, they need to spend 50 tokens as a deposit. After a round of voting ends, users can retrieve their 50 tokens.",
+        "Users who hold more than 50 Tokens can vote. When users vote, they need to spend 50 tokens as a deposit. After a round of voting ends, users can retrieve their 50 tokens.",
     },
     {
       question: "What exactly are Token and NFT?",
@@ -56,27 +48,27 @@ const HelperDialog = () => {
       answer: "这是一个去中心化的小说。每个人都可以参与小说的创作。",
     },
     {
-      question: "如何提交我的创作？",
+      question: "谁可以提交创作？",
       answer: "所有用户都可以提交他们的创作。",
     },
     {
       question: "谁的创作会被采纳？",
       answer:
-        "持有50个以上Token的用户可以进行投票。当投票数达到一定比例时，会自动采纳该创作。",
+        "当投票数达到一定比例时，会自动采纳该创作。随着投票人数的增多，需要更多的票数以采纳一个创作",
     },
     {
       question: "投票和创作有什么奖励？",
       answer:
-        "当一个作者的创作被采纳之后，他会获得100 token和一个对应该创作的NFT。对于投票者而言，当一轮投票结束时（即任意创作被采纳）他们会获得10 token作为参与投票的奖励。",
+        "当一个作者的创作被采纳之后，他会获得100 tokens和一个对应该创作的NFT。对于投票者而言，当一轮投票结束时（即任意创作被采纳），他们会获得10 tokens作为参与投票的奖励。",
     },
     {
       question: "投票有什么限制？",
       answer:
-        "当用户投票时，他们需要花费50 token作为押金。在一轮投票结束之后，用户可以自行将50 token取回。",
+        "持有50个以上Token的用户可以进行投票。当用户投票时，他们需要花费50 tokens作为押金。在一轮投票结束之后，用户可以自行将50 tokens取回。",
     },
     {
       question: "Token和NFT具体指什么？",
-      answer: "Token遵循ERC20标准，而NFT遵循ERC721标准。",
+      answer: "Token遵循ERC20标准，NFT遵循ERC721标准。",
     },
   ];
 

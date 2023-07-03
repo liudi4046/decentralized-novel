@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import { useState } from "react";
 import { voteTokenContract } from "../../contracts";
 import { toast } from "react-toastify";
@@ -11,11 +11,37 @@ export default function Transfer() {
   const [amount, setAmount] = useState("");
   const handleTransfer = async () => {
     try {
-      await (
-        await voteTokenContract.connect(user).transfer(recipient, amount)
-      ).wait();
-      toast.success("success");
+      const transactionResponse = await voteTokenContract
+        .connect(user)
+        .transfer(recipient, amount);
+
+      toast.promise(transactionResponse.wait(), {
+        pending: {
+          render() {
+            return (
+              <div className="flex gap-3">
+                <CircularProgress size={24} />
+                <p> The transfer transaction is pending...</p>
+              </div>
+            );
+          },
+          icon: false,
+        },
+        success: {
+          render() {
+            return "Transfer succeeded!";
+          },
+
+          icon: "🟢",
+        },
+        error: {
+          render() {
+            return "Transaction failed";
+          },
+        },
+      });
     } catch (error: any) {
+      console.log(error);
       toast.error(error.reason ?? error.message);
     }
   };

@@ -1,8 +1,4 @@
-import { useEffect } from "react";
 import NovelBody from "./NovelBody";
-import { useUserContext } from "../../context/UserContext";
-
-import { Provider } from "../../contracts";
 
 export default function Home() {
   // const { user, setUser } = useUserContext();

@@ -23,7 +23,7 @@ export default function Submission({
         <p className="font-normal"># {index}</p>
       </section>
       <p className="index w-fit text-xl">Vote Count: {yesVotes}</p>
-      <p className="text-xl line-clamp-3 mt-5 font-light">{content}</p>
+      <p className="text-xl line-clamp-3 mt-5 ">{content}</p>
       <div>
         <div className="w-fit ml-auto">
           <SubmissionDetailButton author={author} content={content} />{" "}

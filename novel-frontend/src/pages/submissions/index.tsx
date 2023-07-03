@@ -1,6 +1,6 @@
 import { useUserContext } from "../../context/UserContext";
 
-import { QueryClient, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";

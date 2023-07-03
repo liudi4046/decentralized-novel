@@ -1,27 +1,49 @@
 import { useState } from "react";
 
-import { Button, TextField } from "@mui/material";
-import { useQueryClient } from "react-query";
+import { Button, CircularProgress, TextField } from "@mui/material";
 
 import { toast } from "react-toastify";
 import { novelManagementContract } from "../../contracts";
 import { useUserContext } from "../../context/UserContext";
 
 export default function CreateChapter() {
-  const queryClient = useQueryClient();
   const { user } = useUserContext();
   const [content, setContent] = useState("");
 
   const handleSubmit = async () => {
     try {
-      await (
-        await novelManagementContract.connect(user).submit(content)
-      ).wait();
-      await queryClient.invalidateQueries("getAllSubmissions");
-      toast.success("success");
-    } catch (error) {
-      console.error(error);
-      toast.error("error");
+      const transactionResponse = await novelManagementContract
+        .connect(user)
+        .submit(content);
+
+      toast.promise(transactionResponse.wait(), {
+        pending: {
+          render() {
+            return (
+              <div className="flex gap-3">
+                <CircularProgress size={24} />
+                <p> The submission transaction is pending...</p>
+              </div>
+            );
+          },
+          icon: false,
+        },
+        success: {
+          render() {
+            return "Submission succeeded!";
+          },
+
+          icon: "🟢",
+        },
+        error: {
+          render() {
+            return "Submission failed";
+          },
+        },
+      });
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.reason ?? error.message);
     }
   };
 
