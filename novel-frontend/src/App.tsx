@@ -6,13 +6,13 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/home";
-
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { UserProvider } from "./context/UserContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
 import Submissions from "./pages/submissions";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { IconButton, ThemeProvider, createTheme } from "@mui/material";
 import Transfer from "./pages/transfer";
 import CreateChapter from "./pages/createChapter";
 import UserNFTs from "./pages/userNFTs";
@@ -125,6 +125,9 @@ function App() {
               }}
             >
               <HelperDialog />
+              <IconButton href="https://github.com/liudi4046/decentralized-novel">
+                <GitHubIcon style={{ color: "gray" }} fontSize="large" />
+              </IconButton>
             </div>
           </UserProvider>
         </QueryClientProvider>

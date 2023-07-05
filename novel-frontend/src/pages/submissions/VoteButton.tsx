@@ -85,13 +85,14 @@ export default function VoteButton({
         },
       });
 
-      getAcceptedSubmissions(setCurrentSubmissionRound);
+      await getAcceptedSubmissions(setCurrentSubmissionRound);
     } catch (error: any) {
       console.log(error);
       toast.error(error.reason ?? error.message);
     }
     setOpen(false);
   };
+
   return (
     <>
       <Button
