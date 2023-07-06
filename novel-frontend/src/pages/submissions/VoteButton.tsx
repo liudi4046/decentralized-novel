@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { novelManagementContract, voteTokenContract } from "../../contracts";
 import { useState } from "react";
 import { getAcceptedSubmissions } from "../home/NovelBody";
-
+//
 export default function VoteButton({
   submissionIndex,
 }: {
