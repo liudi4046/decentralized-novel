@@ -1,7 +1,7 @@
 import { useUserContext } from "../context/UserContext";
 import { voteTokenContract } from "../contracts";
 import { useQuery } from "react-query";
-
+//
 export default function Balance() {
   const { user } = useUserContext();
 
