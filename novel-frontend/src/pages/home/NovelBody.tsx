@@ -26,7 +26,7 @@ export const getAcceptedSubmissions = async (
   }
 };
 
-export default function NovelBody() {
+export default function NovelBody({setIsVisible}:{setIsVisible:React.Dispatch<React.SetStateAction<boolean>>}) {
   const { setCurrentSubmissionRound, currentSubmissionRound } =
     useUserContext();
 
@@ -41,7 +41,7 @@ export default function NovelBody() {
       {data?.chapters.map((chapter, index) => {
         return (
           <span key={index}>
-            <AcceptedChapter content={chapter} author={data.authors[index]} />
+            <AcceptedChapter setIsVisible={setIsVisible} content={chapter} author={data.authors[index]} />
           </span>
         );
       })}

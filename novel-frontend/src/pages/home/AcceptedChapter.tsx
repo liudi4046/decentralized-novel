@@ -4,9 +4,11 @@ import React from "react";
 export default function AcceptedChapter({
   content,
   author,
+  setIsVisible
 }: {
   content: string;
   author: string;
+  setIsVisible:React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
@@ -17,7 +19,10 @@ export default function AcceptedChapter({
   const handlePopoverClose = () => {
     setAnchorEl(null);
   };
-
+  const handleClick = ()=>{
+    setIsVisible(true);
+    console.log("111")
+  }
   const open = Boolean(anchorEl);
   return (
     <>
@@ -30,7 +35,10 @@ export default function AcceptedChapter({
         style={{
           backgroundColor: open ? "#F2F2AD" : "transparent",
           fontSize: "1.2rem",
+          cursor: 'pointer',
         }}
+        onClick={handleClick}
+
       >
         {content}
       </Typography>
