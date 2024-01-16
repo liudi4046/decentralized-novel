@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is a decentralized novel application. Everyone can contribute to the novel.
+This is a decentralized novel application. 
 
 ## Who can contribute?
 
