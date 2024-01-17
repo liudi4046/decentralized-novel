@@ -67,8 +67,8 @@ export default function Comment({ isVisible,setIsVisible }:{isVisible:boolean,se
       </div>
       <div className="flex-1 min-h-0 overflow-y-auto pb-4 overflow-x-hidden">
         {
-          commentList.map((item)=>{
-            return (<CommentItem commentData={item}></CommentItem>)
+          commentList.map((item,index)=>{
+            return (<CommentItem key={index} commentData={item}></CommentItem>)
         })
         }
         <div ref={commentsEndRef} />
