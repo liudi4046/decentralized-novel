@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex h-[90vh] justify-center">
       <NovelBody setIsVisible={setIsVisible}/>
-      <Comment isVisible={isVisible}/>
+      <Comment setIsVisible={setIsVisible} isVisible={isVisible}/>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function NovelBody({setIsVisible}:{setIsVisible:React.Dispatch<Re
   console.log("currentSubmissionRound", currentSubmissionRound);
 
   return (
-    <div className="w-2/5 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
+    <div className="w-1/2 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
       <Loading isLoading={isFetching} />
       {data?.chapters.map((chapter, index) => {
         return (
