@@ -11,6 +11,8 @@ public class CommentDTO implements Serializable {
 
     private String comment;
 
+    private String commentId;
+
     public String getWalletAddress() {
         return walletAddress;
     }
@@ -25,5 +27,13 @@ public class CommentDTO implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 }

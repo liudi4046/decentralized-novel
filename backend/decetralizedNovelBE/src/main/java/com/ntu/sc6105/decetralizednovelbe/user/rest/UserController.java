@@ -2,7 +2,6 @@ package com.ntu.sc6105.decetralizednovelbe.user.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ntu.sc6105.decetralizednovelbe.common.constants.StatusCode;
-import com.ntu.sc6105.decetralizednovelbe.common.dto.BaseResponseDTO;
 import com.ntu.sc6105.decetralizednovelbe.common.rest.BaseValidator;
 import com.ntu.sc6105.decetralizednovelbe.common.rest.ValidationException;
 import com.ntu.sc6105.decetralizednovelbe.user.dto.UserRequestDTO;
@@ -34,14 +33,15 @@ public class UserController {
 
             BaseResponseConverter.convertResponse(userResponse, StatusCode.SUCCESS);
 
-        } catch (ValidationException ve ){
+        } catch (ValidationException ve) {
             userResponse.setStatus(ve.getStatus());
             userResponse.setMessage(ve.getErrorMessage());
             userResponse.setCode(ve.getErrorCode());
-        } catch ( UserVerificationException uve){
+        } catch (UserVerificationException uve) {
+            uve.printStackTrace();
             BaseResponseConverter.convertResponse(userResponse, StatusCode.USER_VERIFICATION_FAIL);
-        } catch (Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
             BaseResponseConverter.convertResponse(userResponse, StatusCode.SYSTEM_ERROR);
         }
 

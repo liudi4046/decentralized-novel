@@ -3,8 +3,6 @@ package com.ntu.sc6105.decetralizednovelbe.user.service;
 import com.ntu.sc6105.decetralizednovelbe.user.dto.UserRequestDTO;
 import com.ntu.sc6105.decetralizednovelbe.user.dto.UserResponse;
 import com.ntu.sc6105.decetralizednovelbe.user.exception.UserVerificationException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.ECDSASignature;
@@ -13,10 +11,8 @@ import org.web3j.crypto.Keys;
 import org.web3j.crypto.Sign;
 import org.web3j.utils.Numeric;
 
-import javax.crypto.SecretKey;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Base64;
 
 @Service
 public class UserService {
@@ -26,13 +22,13 @@ public class UserService {
     @Autowired
     private JwtTokenService jwtTokenService;
 
-    public void verifyAndGetToken(UserRequestDTO requestDTO, UserResponse response) throws UserVerificationException{
+    public void verifyAndGetToken(UserRequestDTO requestDTO, UserResponse response) throws UserVerificationException {
         boolean isVerified = testRecoverAddressFromSignature(requestDTO);
         String token = "";
 
-        if(isVerified){
+        if (isVerified) {
             token = jwtTokenService.generateToken(requestDTO.getWalletAddress());
-        } else{
+        } else {
             throw new UserVerificationException();
         }
 
@@ -58,8 +54,8 @@ public class UserService {
 
         Sign.SignatureData sd = new Sign.SignatureData(
                 v,
-                (byte[]) Arrays.copyOfRange(signatureBytes, 0, 32),
-                (byte[]) Arrays.copyOfRange(signatureBytes, 32, 64));
+                Arrays.copyOfRange(signatureBytes, 0, 32),
+                Arrays.copyOfRange(signatureBytes, 32, 64));
 
         String addressRecovered = null;
         boolean match = false;
@@ -74,7 +70,7 @@ public class UserService {
             if (publicKey != null) {
                 addressRecovered = "0x" + Keys.getAddress(publicKey);
 
-                if (addressRecovered.equals(address)) {
+                if (addressRecovered.equalsIgnoreCase(address)) {
                     match = true;
                     break;
                 }

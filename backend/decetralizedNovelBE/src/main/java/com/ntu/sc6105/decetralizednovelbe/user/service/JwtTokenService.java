@@ -17,13 +17,13 @@ import java.util.Map;
 public class JwtTokenService {
 
 
-    private String secretKey = "GPCSXCDP6NPZjcLZa75nrzz6NQHmKCJSTPeHEdITGmc=";
+    private final String secretKey = "GPCSXCDP6NPZjcLZa75nrzz6NQHmKCJSTPeHEdITGmc=";
 
     public String generateToken(String walletAddress) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("walletAddress", walletAddress);
 
-        long expirationTimeMillis = 3600000; // 1 hour, for example
+        long expirationTimeMillis = 3600000 * 24 * 7;
         long currentTimeMillis = System.currentTimeMillis();
 
         System.out.println("secret key:" + secretKey);
@@ -38,7 +38,6 @@ public class JwtTokenService {
     }
 
 
-
     public static String generateSecretKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
@@ -46,6 +45,7 @@ public class JwtTokenService {
             SecretKey secretKey = keyGen.generateKey();
             return Base64.getEncoder().encodeToString(secretKey.getEncoded());
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Error while generating secret key", e);
         }
     }

@@ -12,24 +12,22 @@ public class ValidationException extends Exception implements Serializable {
     private final String errorCode;
     private String errorMessage;
 
-    public ValidationException(StatusCode statusCode){
+    public ValidationException(StatusCode statusCode) {
         this(statusCode.getStatus(), statusCode.getCode(), statusCode.getMessage());
     }
 
-    public ValidationException(String status, String errorCode, String errorMessage){
+    public ValidationException(String status, String errorCode, String errorMessage) {
         this.status = status;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public ValidationException(String status, String errorCode, String errorMessage, Exception e){
+    public ValidationException(String status, String errorCode, String errorMessage, Exception e) {
         super(e);
         this.status = status;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
-
-
 
 
     public String getStatus() {

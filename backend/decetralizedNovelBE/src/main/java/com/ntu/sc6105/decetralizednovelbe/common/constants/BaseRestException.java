@@ -1,12 +1,12 @@
 package com.ntu.sc6105.decetralizednovelbe.common.constants;
 
-public abstract class BaseRestException extends RuntimeException{
+public abstract class BaseRestException extends RuntimeException {
 
     private StatusCode statusCode;
 
     private String errorMessage;
 
-    public BaseRestException(StatusCode statusCode){
+    public BaseRestException(StatusCode statusCode) {
         super();
         this.statusCode = statusCode;
     }

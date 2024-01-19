@@ -4,13 +4,13 @@ import com.ntu.sc6105.decetralizednovelbe.common.dto.BaseResponseDTO;
 
 public class CommentResponseDTO extends BaseResponseDTO {
 
-    private CommentDTO commentDTO;
+    private CommentDTO[] comments;
 
-    public CommentDTO getCommentDTO() {
-        return commentDTO;
+    public CommentDTO[] getComments() {
+        return comments;
     }
 
-    public void setCommentDTO(CommentDTO commentDTO) {
-        this.commentDTO = commentDTO;
+    public void setComments(CommentDTO[] comments) {
+        this.comments = comments;
     }
 }
