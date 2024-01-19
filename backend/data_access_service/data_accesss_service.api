@@ -1,0 +1,81 @@
+syntax = "v1"
+
+type ChapterFindByHashRequest {
+	ChapterHashArray []string `json:"chapterHashArray"`
+}
+
+type ChapterFindByHashResponse {
+	Status              string   `json:"status"`
+	Code                string   `json:"code"`
+	Message             string   `json:"message"`
+	ChapterContentArray []string `json:"chapterContentArray"`
+}
+
+type ChapterAddRequest {
+	ChapterHash string `json:"chapterHash"`
+	Content     string `json:"content"`
+}
+
+type ChapterAddResponse {
+	Status  string `json:"status"`
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type CommentFindByChapterHashRequest {
+	ChapterHash string `json:"chapterHash"`
+}
+
+type (
+	Comment {
+		Id             string `json:"id"`
+		WallentAddress string `json:"walletAddress"`
+		Comment        string `json:"comment"`
+	}
+	CommentFindByChapterHashResponse {
+		Status   string    `json:"status"`
+		Code     string    `json:"code"`
+		Message  string    `json:"message"`
+		Comments []Comment `json:"comments"`
+	}
+)
+
+type CommentAddRequest {
+	ChapterHash   string `json:"chapterHash"`
+	WalletAddress string `json:"walletAddress"`
+	Comment       string `json:"comment"`
+}
+
+type CommentAddResponse {
+	Status  string `json:"status"`
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type CommentDeleteRequest {
+	CommentId string `json:"commentId"`
+}
+
+type CommentDeleteResponse {
+	Status  string `json:"status"`
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+service data_access-api {
+	@handler ChapterFindByHashHandler
+	post /chapter/findByHash (ChapterFindByHashRequest) returns (ChapterFindByHashResponse)
+
+	@handler ChapterAddHandler
+	post /chapter/add (ChapterAddRequest) returns (ChapterAddResponse)
+
+	@handler CommentFindByChapterHashHandler
+	post /comment/findByChapterHash (CommentFindByChapterHashRequest) returns (CommentFindByChapterHashResponse)
+
+	@handler CommentAddHandler
+	post /comment/add (CommentAddRequest) returns (CommentAddResponse)
+
+	@handler CommentDeleteHandler
+	post /comment/delete (CommentDeleteRequest) returns (CommentDeleteResponse)
+}
+
