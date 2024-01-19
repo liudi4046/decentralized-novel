@@ -28,7 +28,7 @@ type CommentFindByChapterHashRequest {
 
 type (
 	Comment {
-		Id             string `json:"id"`
+		CommentId      string `json:"commentId"`
 		WallentAddress string `json:"walletAddress"`
 		Comment        string `json:"comment"`
 	}

@@ -24,7 +24,7 @@ type ChapterFindByHashResponse struct {
 }
 
 type Comment struct {
-	Id             string `json:"id"`
+	CommentId      string `json:"commentId"`
 	WallentAddress string `json:"walletAddress"`
 	Comment        string `json:"comment"`
 }

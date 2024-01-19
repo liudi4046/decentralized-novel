@@ -47,7 +47,7 @@ func (l *CommentFindByChapterHashLogic) CommentFindByChapterHash(req *types.Comm
 
 	for _, comment := range *raw_comments {
 		comments = append(comments, types.Comment{
-			Id:             strconv.Itoa(int(comment.Id)),
+			CommentId:      strconv.Itoa(int(comment.Id)),
 			WallentAddress: comment.WalletAddress,
 			Comment:        comment.Comment,
 		})
