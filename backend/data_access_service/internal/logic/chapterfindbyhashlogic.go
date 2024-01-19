@@ -25,7 +25,7 @@ func NewChapterFindByHashLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 }
 
 func (l *ChapterFindByHashLogic) ChapterFindByHash(req *types.ChapterFindByHashRequest) (resp *types.ChapterFindByHashResponse, err error) {
-	chapterContentArray := make([]string, 1)
+	var chapterContentArray []string
 	for i := 0; i < len(req.ChapterHashArray); i++ {
 		chapter, err := l.svcCtx.ChapterModel.FindOneByHash(l.ctx, req.ChapterHashArray[i])
 		if err != nil && err != mysql.ErrNotFound {
@@ -33,10 +33,14 @@ func (l *ChapterFindByHashLogic) ChapterFindByHash(req *types.ChapterFindByHashR
 				Status:              "Error",
 				Code:                "-1",
 				Message:             err.Error(),
-				ChapterContentArray: nil,
+				ChapterContentArray: []string{},
 			}, nil
 		}
-		chapterContentArray = append(chapterContentArray, chapter.Content)
+		if err == mysql.ErrNotFound {
+			chapterContentArray = append(chapterContentArray, "")
+		} else {
+			chapterContentArray = append(chapterContentArray, chapter.Content)
+		}
 	}
 
 	return &types.ChapterFindByHashResponse{
