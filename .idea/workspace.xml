@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/chapter/dto/AddChapterRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/chapter/dto/ChapterRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/chapter/dto/ChapterResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/chapter/rest/ChapterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/chapter/service/ChapterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/comments/dto/CommentRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/comments/dto/CommentResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/comments/rest/CommentsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/comments/services/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/common/constants/CommonConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/common/constants/StatusCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/common/dto/BaseRequestIdDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/common/dto/BaseResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/dto/UserRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/dto/UserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/rest/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/service/BaseResponseConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/service/JwtTokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decetralizedNovelBE/src/main/java/com/ntu/sc6105/decetralizednovelbe/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/components/AccountButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/components/AccountButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +27,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "ts.external.directory.path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

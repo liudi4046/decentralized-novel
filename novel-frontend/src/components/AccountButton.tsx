@@ -31,6 +31,8 @@ function MenuButton() {
                 setUser(await Provider.getSigner());
             });
 
+
+
             const walletAddress = await signer.getAddress();
             const ts = new Date()
             const message = 'helloworld'//'' + ts.getTime() + '-' + Math.floor( Math.random() * 10000000);
@@ -40,13 +42,14 @@ function MenuButton() {
             console.log("Random Number:", message);
             console.log("Signature:", signature);
 
-            // const address = ethers.verifyMessage(message,signature)
 
+
+            const address = ethers.verifyMessage('Hello, World!','0x2360e345b8c5ddd815a098a379b81087ea3fb22b7920cfc9e67c8ab43826951f246deac44428361511b8cd7e879eaa429d748cd4906560476b48e5720346978c1c')
 
             // const recoveredAddress = ethers.utils.verifyMessage(ethers.utils.arrayify(messageHash), signature);
 
 
-            // alert(messageHash)
+            alert(address)
 
             const res: object = await login({
                 signature,
