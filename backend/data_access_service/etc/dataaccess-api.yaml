@@ -1,0 +1,6 @@
+Name: data_access-api
+Host: 0.0.0.0
+Port: 2333
+
+Mysql:
+  DataSource: root:wub8crd8GYF7vdv.xnh@tcp(novel_mysql:3306)/novel
