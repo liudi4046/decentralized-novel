@@ -15,5 +15,4 @@ export default defineConfig({
       // 你可以添加更多的代理规则
     }
   }
-
 })
