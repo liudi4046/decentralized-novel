@@ -6,7 +6,13 @@ import { NovelManagement as NovelManagementType } from "../typechain";
 import { DecentralizedNovelChapter } from "../typechain";
 import { DecentralizedNovelVoteToken } from "../typechain";
 
-export const Provider = new ethers.BrowserProvider(window.ethereum);
+let Provider = null
+if(window.ethereum) {
+    Provider = new ethers.BrowserProvider(window.ethereum);
+} else {
+    Provider = ethers.getDefaultProvider('goerli')
+}
+export { Provider }
 const novelManagementContractAddress =
   "0x98ce973C84FF9cbf6987e0C3225954F70eC04332";
 const novelManagementABI = NovelManagement;

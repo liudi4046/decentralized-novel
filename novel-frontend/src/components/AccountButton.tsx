@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import WithdrawButton from "./WithdrawButton";
 import {Provider} from "../contracts";
 import {useUserContext} from "../context/UserContext";
+import {ethers} from 'ethers'
+
+import {login} from '../api/auth'
 //abcdefdff
 function MenuButton() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,12 +31,32 @@ function MenuButton() {
                 setUser(await Provider.getSigner());
             });
 
+            const walletAddress = await signer.getAddress();
             const ts = new Date()
-            const randomNum = '' + ts.getTime() + '-' + Math.floor( Math.random() * 10000000);
-            const signature = await signer.signMessage(randomNum.toString());
+            const message = 'helloworld'//'' + ts.getTime() + '-' + Math.floor( Math.random() * 10000000);
 
-            console.log("Random Number:", randomNum);
+            const signature = await signer.signMessage(message);
+
+            console.log("Random Number:", message);
             console.log("Signature:", signature);
+
+            // const address = ethers.verifyMessage(message,signature)
+
+
+            // const recoveredAddress = ethers.utils.verifyMessage(ethers.utils.arrayify(messageHash), signature);
+
+
+            // alert(messageHash)
+
+            const res: object = await login({
+                signature,
+                message,
+                walletAddress
+            })
+            console.log(res)
+            const { loginToken } = res.data
+            localStorage.setItem('token',loginToken)
+
         } catch (error) {
             console.log("Error on connecting MetaMask account:", error);
         }

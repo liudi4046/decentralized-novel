@@ -17,7 +17,7 @@ export default function VoteButton({
 }: {
   submissionIndex: number;
 }) {
-  const { user, setCurrentSubmissionRound } = useUserContext();
+  const { user, setCurrentSubmissionRound, currentSubmissionRound } = useUserContext();
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -96,6 +96,7 @@ export default function VoteButton({
   return (
     <>
       <Button
+
         sx={{
           backgroundColor: "inherit !important",
           color: "#fff",
@@ -112,7 +113,9 @@ export default function VoteButton({
           },
         }}
         variant="contained"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+            setOpen(true)
+        }}
       >
         vote
       </Button>

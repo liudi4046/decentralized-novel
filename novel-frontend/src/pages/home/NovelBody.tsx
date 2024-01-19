@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { useUserContext } from "../../context/UserContext";
 import { novelManagementContract } from "../../contracts";
 
+import { useState, useEffect } from 'react';
 import AcceptedChapter from "./AcceptedChapter";
 import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
@@ -27,12 +28,24 @@ export const getAcceptedSubmissions = async (
 };
 
 export default function NovelBody({setIsVisible}:{setIsVisible:React.Dispatch<React.SetStateAction<boolean>>}) {
+  console.log('NovelBody')
+
   const { setCurrentSubmissionRound, currentSubmissionRound } =
     useUserContext();
+  const [isMounted, setIsMounted] = useState(false);
+
+  // 组件挂载时设置isMounted为true
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const { data, isFetching } = useQuery("getAcceptedSubmissions", () =>
-    getAcceptedSubmissions(setCurrentSubmissionRound)
+  {
+    return getAcceptedSubmissions(setCurrentSubmissionRound)
+  },
+      { refetchOnWindowFocus: false } // 使用isMounted控制查询的启用
   );
+
   console.log("currentSubmissionRound", currentSubmissionRound);
 
   return (
