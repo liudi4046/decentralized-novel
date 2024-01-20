@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="" />
+    <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/novel-frontend/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/novel-frontend/.env.production" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/vite.config.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/src/api",
+    "last_opened_file_path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend",
     "node.js.selected.package.tslint": "(autodetect)",
     "ts.external.directory.path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
@@ -38,6 +43,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/novel-frontend" />
       <recent name="$PROJECT_DIR$/novel-frontend/src/api" />
     </key>
   </component>
