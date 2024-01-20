@@ -36,7 +36,7 @@ export default function CommentItem({ commentData, chapterHash,commentList, setC
         <div className="text-gray-500 overflow-wrap break-words text-xs leading-tight pr-2">
             {commentData.walletAddress}
         </div>
-        <div className="text-md mt-1 text-gray-700">{commentData.comment}</div>
+        <div style={{fontWeight:'300'}} className="text-sm mt-1 text-gray-600">{commentData.comment}</div>
         <div className="flex justify-between items-center">
             <div className="text-xs mt-0.5  text-gray-400 ">{ formatDate(commentData.timestamp) }</div>
             {address === commentData.walletAddress ? <CloseIcon onClick={handleDeleteComment} className="close-icon scale-75  text-gray-400"></CloseIcon> : null}

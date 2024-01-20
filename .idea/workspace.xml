@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/novel-frontend/src/assets/font/nunito.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/submissions/VoteButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/submissions/VoteButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
