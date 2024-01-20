@@ -49,13 +49,14 @@ export default function NovelBody({currentSelectedChapterHash,setCurrentSelected
   console.log("currentSubmissionRound", currentSubmissionRound);
 
   return (
-    <div className="w-1/2 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
+    <div className="w-3/5 lg:w-1/2 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
       <Loading isLoading={isFetching} />
       {data?.chapters.map((chapter, index) => {
         return (
-          <span key={index}>
+          <div className="mb-1.5" key={index}>
             <AcceptedChapter currentSelectedChapterHash={currentSelectedChapterHash} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} contentHash={chapter} author={data.authors[index]} />
-          </span>
+
+          </div>
         );
       })}
     </div>

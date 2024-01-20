@@ -67,6 +67,7 @@ function MenuButton() {
   }
     const handleLogout = () =>{
         handleClose();
+        localStorage.clear()
         setUser(null);
     }
   return (

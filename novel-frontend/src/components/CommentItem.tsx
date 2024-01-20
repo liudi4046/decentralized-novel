@@ -33,7 +33,7 @@ export default function CommentItem({ commentData, chapterHash,commentList, setC
         }
     }, [user]);
     return <div className="comment-container px-2.5 py-1.5 w-full">
-        <div className="text-gray-500 overflow-wrap break-words text-sm leading-tight pr-2">
+        <div className="text-gray-500 overflow-wrap break-words text-xs leading-tight pr-2">
             {commentData.walletAddress}
         </div>
         <div className="text-md mt-1 text-gray-700">{commentData.comment}</div>
