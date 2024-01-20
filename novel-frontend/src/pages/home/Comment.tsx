@@ -1,12 +1,12 @@
 import CloseIcon from '@mui/icons-material/Close';
 import CommentItem from "../../components/CommentItem"
 import {useState, useRef, useEffect} from "react";
-import {getComment} from '../../api/comments'
+import {deleteComment, getComment} from '../../api/comments'
 import {useUserContext} from "../../context/UserContext";
 import {addComment} from '../../api/comments'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 export default function Comment({ currentSelectedChapterHash,setCurrentSelectedChapterHash }:{currentSelectedChapterHash:boolean,setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
-  const [commentList,setCommentList] = useState([
+  const initData = [
     {
       address: '0x21235kjkhgvhuijlkbhvgghiuojlknfsgdddgs4',
       content: '刘神' +
@@ -29,7 +29,19 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       content: '菜菜ZJX',
       time: '2023-01-17'
     }
-  ]);
+  ]
+  const { user, setUser } = useUserContext();
+  const [address, setAddress] = useState<string | undefined>("");
+
+  useEffect(() => {
+    const setUserAddress = async () => {
+      setAddress(await user?.getAddress());
+    };
+    if (typeof user !== "string") {
+      setUserAddress();
+    }
+  }, [user]);
+  const [commentList,setCommentList] = useState([]);
 
   useEffect(()=>{
     getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
@@ -51,11 +63,16 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
   const handleKeyDown = async (e) => {
     if (e.key === 'Enter') {
       console.log('Enter key pressed! Current value:', inputValue);
+      const chapterHash = currentSelectedChapterHash
+      const loginToken = localStorage.getItem('token')
+      const comment = inputValue
 
-      const res = await addComment({chapterHash,comment, loginToken})
+      const {data} = await addComment({chapterHash,comment, loginToken})
+
+      console.log(data,889768)
       // 执行更多操作，如提交表单等
       setCommentList([...commentList,{
-        address: '0x413245',
+        address,
         content: inputValue,
         time: '2023-01-17'
       }])
@@ -70,7 +87,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       <div className="text-lg p-4 px-2.5 flex justify-between">
         <div>
           Comments
-          {currentSelectedChapterHash}
+          {/*{currentSelectedChapterHash}*/}
         </div>
         <div onClick={()=>{setCurrentSelectedChapterHash('')}}>
           <CloseIcon></CloseIcon>

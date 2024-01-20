@@ -54,7 +54,7 @@ export default function NovelBody({currentSelectedChapterHash,setCurrentSelected
       {data?.chapters.map((chapter, index) => {
         return (
           <span key={index}>
-            <AcceptedChapter currentSelectedChapterHash={currentSelectedChapterHash} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} content={chapter} author={data.authors[index]} />
+            <AcceptedChapter currentSelectedChapterHash={currentSelectedChapterHash} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} contentHash={chapter} author={data.authors[index]} />
           </span>
         );
       })}

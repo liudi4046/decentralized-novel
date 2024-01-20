@@ -1,28 +1,35 @@
 import { Popover, Typography } from "@mui/material";
 import React from "react";
-
+import {useEffect, useState} from "react";
+import {getChapter} from '../../api/chapter'
 export default function AcceptedChapter({
-  content,
+  contentHash,
   author,
   setCurrentSelectedChapterHash,
   currentSelectedChapterHash
 }: {
-  content: string;
+  contentHash: string;
   author: string;
   setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>;
   currentSelectedChapterHash: string;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
+  const [content,setContent] = useState('')
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  useEffect(()=>{
+      getChapter({chapterHashArray:[contentHash]}).then(({data})=>{
+          setContent(data.chapterContentArray.pop())
+      })
+  },[currentSelectedChapterHash])
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
   };
   const handleClick = ()=>{
-    setCurrentSelectedChapterHash(content);
+    setCurrentSelectedChapterHash(contentHash);
     console.log("111")
   }
   const open = Boolean(anchorEl);
@@ -35,7 +42,7 @@ export default function AcceptedChapter({
         onMouseLeave={handlePopoverClose}
         display="inline"
         style={{
-          backgroundColor: open ? "rgb(244 243 195)" : currentSelectedChapterHash === content ? "#f1ef71":"transparent",
+          backgroundColor: open ? "rgb(244 243 195)" : currentSelectedChapterHash === contentHash ? "#f1ef71":"transparent",
           fontSize: "1.2rem",
           cursor: 'pointer',
         }}
