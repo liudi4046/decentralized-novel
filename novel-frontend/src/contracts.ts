@@ -22,7 +22,7 @@ export const novelManagementContract = new ethers.Contract(
   Provider
 ) as unknown as NovelManagementType;
 
-const voteTokenContractAddress = "0x98ce973C84FF9cbf6987e0C3225954F70eC04332";
+const voteTokenContractAddress = "0xc64f5324507C9A1c0d2735062aC4137994d5E410";
 const voteTokenABI = VoteToken;
 export const voteTokenContract = new ethers.Contract(
   voteTokenContractAddress,

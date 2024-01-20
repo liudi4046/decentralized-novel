@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/novel-frontend/vercel.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/contracts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/contracts.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
