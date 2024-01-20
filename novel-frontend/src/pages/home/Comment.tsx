@@ -44,8 +44,10 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
   const [commentList,setCommentList] = useState([]);
 
   useEffect(()=>{
-    getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
+    if(currentSelectedChapterHash)
+      getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
       console.log(data)
+      setCommentList([...data.comments])
     })
   },[currentSelectedChapterHash])
 
