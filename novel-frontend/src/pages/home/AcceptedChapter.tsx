@@ -43,9 +43,9 @@ export default function AcceptedChapter({
         display="inline"
         classname="text-gray-700 "
         style={{
-            fontWeight: "300",
+            fontWeight: "350",
           backgroundColor: open ?"rgb(238 236 146)"  : currentSelectedChapterHash === contentHash ? "rgb(244 243 195)":"transparent",
-          fontSize: "1rem",
+          fontSize: "1.05rem",
           cursor: 'pointer',
         }}
         onClick={handleClick}

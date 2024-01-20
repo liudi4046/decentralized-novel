@@ -60,8 +60,6 @@ export default function NovelBody({currentSelectedChapterHash,setCurrentSelected
             <span>&nbsp;</span>
             <span>&nbsp;</span>
             <span>&nbsp;</span>
-            <span>&nbsp;</span>
-            <span>&nbsp;</span>
             <AcceptedChapter currentSelectedChapterHash={currentSelectedChapterHash} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} contentHash={chapter} author={data.authors[index]} />
           </div>
         );
