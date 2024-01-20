@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/novel-frontend/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/api/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/api/request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/novel-frontend/vercel.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
