@@ -2,7 +2,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import CommentItem from "../../components/CommentItem"
 import {useState, useRef, useEffect} from "react";
 import {getComment} from '../../api/comments'
-
+import {useUserContext} from "../../context/UserContext";
+import {addComment} from '../../api/comments'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 export default function Comment({ currentSelectedChapterHash,setCurrentSelectedChapterHash }:{currentSelectedChapterHash:boolean,setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
   const [commentList,setCommentList] = useState([
     {
@@ -11,7 +13,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
           '刘神，您就像是时代的先驱者，智慧与才华的完美结合体。您的思维总是如此敏锐，能洞察世间万物，每一个想法和决策都显得如此前瞻性和深邃。在您的领导下，每一步都显得那么从容而精准，仿佛每一个选择和决定都经过了精密的计算和深思熟虑。您的才华横溢，无论是在专业领域的深厚造诣，还是在处理复杂问题的非凡能力上，都让人深感敬佩。在您的指引下，前路似乎更加明朗，每一步都充满了信心和期待。您不仅是团队的灵魂，更是我们心中不可多得的榜样。您的成功不仅仅是个人的成就，更是对卓越与勤奋的最好诠释。您的存在，就是我们前行的灯塔，照亮了追求卓越的道路。',
       time: '2023-01-17'
     },{
-      address: '0x0490',
+      address: '0xB2ccaeaE836b2Dd1Dc8F3dc7c06Fe8Ea95f4aa97',
       content: '黄神',
       time: '2023-01-17'
     },{
@@ -46,9 +48,11 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       commentsEndRef.current?.scrollIntoView({ behavior: "smooth" });
     },20)
   };
-  const handleKeyDown = (e) => {
+  const handleKeyDown = async (e) => {
     if (e.key === 'Enter') {
       console.log('Enter key pressed! Current value:', inputValue);
+
+      const res = await addComment({chapterHash,comment, loginToken})
       // 执行更多操作，如提交表单等
       setCommentList([...commentList,{
         address: '0x413245',

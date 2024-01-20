@@ -35,7 +35,7 @@ function MenuButton() {
 
             const walletAddress = await signer.getAddress();
             const ts = new Date()
-            const message = 'helloworld'//'' + ts.getTime() + '-' + Math.floor( Math.random() * 10000000);
+            const message = '' + ts.getTime() + '-' + Math.floor( Math.random() * 10000000);
 
             const signature = await signer.signMessage(message);
 

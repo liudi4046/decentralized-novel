@@ -1,13 +1,32 @@
 import CloseIcon from '@mui/icons-material/Close';
+import {useUserContext} from "../context/UserContext";
+import {useEffect, useState} from "react";
+import {deleteComment} from '../api/comments'
 export default function Comment({ commentData }:{commentData:object}) {
-    return <div className="px-2.5 py-1.5 w-full">
+    const { user, setUser } = useUserContext();
+    const [address, setAddress] = useState<string | undefined>("");
+
+    const handleDeleteComment = async () =>{
+        const res = await deleteComment({commentId,loginToken,chapterHash})
+    }
+
+    useEffect(() => {
+        const setUserAddress = async () => {
+            setAddress(await user?.getAddress());
+        };
+        if (typeof user !== "string") {
+            setUserAddress();
+        }
+    }, [user]);
+    return <div className="comment-container px-2.5 py-1.5 w-full">
         <div className="text-gray-500 overflow-wrap break-words text-sm leading-tight pr-2">
             {commentData.address}
         </div>
         <div className="text-md mt-1 text-gray-700">{commentData.content}</div>
-        <div className="flex justify-between">
-            <div className="text-xs mt-0.5  text-gray-400">{commentData.time}</div>
-            <CloseIcon className="scale-75 hidden text-gray-400"></CloseIcon>
+        <div className="flex justify-between items-center">
+            <div className="text-xs mt-0.5  text-gray-400 ">{commentData.time}</div>
+            {address === commentData.address ? <CloseIcon onclick={handleDeleteComment} className="close-icon scale-75  text-gray-400"></CloseIcon> : null}
+
         </div>
     </div>
 }

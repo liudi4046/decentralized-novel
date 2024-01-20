@@ -15,3 +15,10 @@ export function getComment(data : object) {
     data
   });
 }
+export function deleteComment(data : object) {
+  return request({
+    url: '/comment/deleteComment',
+    method: 'POST',
+    data
+  });
+}

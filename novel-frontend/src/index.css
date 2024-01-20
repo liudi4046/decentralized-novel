@@ -103,3 +103,16 @@ html {
 
 /* Tailwind的工具类 */
 @tailwind utilities;
+
+.comment-container {
+  position: relative;
+}
+
+.close-icon {
+  visibility: hidden !important;
+  /* Adjust the position as needed */
+}
+
+.comment-container:hover .close-icon {
+  visibility: visible !important;
+}
