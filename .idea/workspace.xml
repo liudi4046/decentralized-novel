@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/api/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/api/comments.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/components/AccountButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/components/AccountButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
