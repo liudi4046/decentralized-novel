@@ -27,7 +27,7 @@ export const getAcceptedSubmissions = async (
   }
 };
 
-export default function NovelBody({setCurrentSelectedChapterHash}:{setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
+export default function NovelBody({currentSelectedChapterHash,setCurrentSelectedChapterHash}:{currentSelectedChapterHash:string;setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
   console.log('NovelBody')
 
   const { setCurrentSubmissionRound, currentSubmissionRound } =
@@ -54,7 +54,7 @@ export default function NovelBody({setCurrentSelectedChapterHash}:{setCurrentSel
       {data?.chapters.map((chapter, index) => {
         return (
           <span key={index}>
-            <AcceptedChapter setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} content={chapter} author={data.authors[index]} />
+            <AcceptedChapter currentSelectedChapterHash={currentSelectedChapterHash} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} content={chapter} author={data.authors[index]} />
           </span>
         );
       })}

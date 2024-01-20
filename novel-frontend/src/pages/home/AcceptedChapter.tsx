@@ -4,11 +4,13 @@ import React from "react";
 export default function AcceptedChapter({
   content,
   author,
-  setCurrentSelectedChapterHash
+  setCurrentSelectedChapterHash,
+  currentSelectedChapterHash
 }: {
   content: string;
   author: string;
   setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>;
+  currentSelectedChapterHash: string;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
@@ -33,7 +35,7 @@ export default function AcceptedChapter({
         onMouseLeave={handlePopoverClose}
         display="inline"
         style={{
-          backgroundColor: open ? "#F2F2AD" : "transparent",
+          backgroundColor: open ? "rgb(244 243 195)" : currentSelectedChapterHash === content ? "#f1ef71":"transparent",
           fontSize: "1.2rem",
           cursor: 'pointer',
         }}

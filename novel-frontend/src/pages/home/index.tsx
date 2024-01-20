@@ -6,7 +6,7 @@ export default function Home() {
   const [currentSelectedChapterHash,setCurrentSelectedChapterHash] = useState('');
   return (
     <div className="flex h-[90vh] justify-center">
-      <NovelBody setCurrentSelectedChapterHash={setCurrentSelectedChapterHash}/>
+      <NovelBody setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} currentSelectedChapterHash={currentSelectedChapterHash}/>
       <Comment setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} currentSelectedChapterHash={currentSelectedChapterHash}/>
     </div>
   );
