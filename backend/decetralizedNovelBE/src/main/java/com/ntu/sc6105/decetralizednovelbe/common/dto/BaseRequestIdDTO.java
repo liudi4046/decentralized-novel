@@ -5,12 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
 
-
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BaseRequestIdDTO implements Serializable {
 
-    private long serialVersionUID = 1L;
+    private final long serialVersionUID = 1L;
     private String requestId;
 
     public String getRequestId() {
