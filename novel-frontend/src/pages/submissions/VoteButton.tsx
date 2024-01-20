@@ -24,6 +24,7 @@ export default function VoteButton({
     setOpen(false);
   };
   const handleConfirm = async () => {
+      setOpen(false);
     try {
       const approveTransaction = await voteTokenContract
         .connect(user)

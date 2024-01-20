@@ -41,9 +41,11 @@ export default function AcceptedChapter({
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
         display="inline"
+        classname="text-gray-700 "
         style={{
-          backgroundColor: open ? "rgb(244 243 195)" : currentSelectedChapterHash === contentHash ? "#f1ef71":"transparent",
-          fontSize: "1.2rem",
+            fontWeight: "300",
+          backgroundColor: open ?"rgb(238 236 146)"  : currentSelectedChapterHash === contentHash ? "rgb(244 243 195)":"transparent",
+          fontSize: "1rem",
           cursor: 'pointer',
         }}
         onClick={handleClick}

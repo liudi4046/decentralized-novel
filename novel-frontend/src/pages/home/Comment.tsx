@@ -86,7 +86,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
   return (
     <>
     {currentSelectedChapterHash !== '' ?
-    <div className="flex flex-col bg-blue-100 w-1/5">
+    <div className="flex flex-col bg-blue-100 w-1/3 lg:w-1/4">
       <div className="text-lg p-4 px-2.5 flex justify-between">
         <div>
           Comments

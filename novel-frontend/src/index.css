@@ -116,3 +116,10 @@ html {
 .comment-container:hover .close-icon {
   visibility: visible !important;
 }
+@font-face{
+  font-family: 'nunito';
+  src: url('./assets/font/nunito.woff2') format('woff')
+}
+body {
+  font-family:'nunito', "SourceHanSansSC-Regular","SourceHanSansCN-Regular","PingFangSC-Regular","Microsoft YaHei",system-ui,"-apple-system",Segoe UI,Roboto,Emoji,sans-serif !important;
+}
