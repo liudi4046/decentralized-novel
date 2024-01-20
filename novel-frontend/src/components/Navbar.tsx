@@ -60,7 +60,7 @@ export default function Navbar() {
         </div>
         <div className="w-fit ml-auto flex gap-5 items-center">
           <div className="hover:text-blue-300">
-            <Link to="/">Home</Link>
+            <Link to="/">HOME</Link>
           </div>
 
           <MenuButton />
