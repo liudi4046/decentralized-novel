@@ -38,6 +38,7 @@ type (
 		ChapterHash   string `db:"chapter_hash"`
 		WalletAddress string `db:"wallet_address"`
 		Comment       string `db:"comment"`
+		Timestamp     string `db:"timestamp"`
 	}
 )
 
@@ -69,14 +70,14 @@ func (m *defaultCommentModel) FindOne(ctx context.Context, id int64) (*Comment, 
 }
 
 func (m *defaultCommentModel) Insert(ctx context.Context, data *Comment) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, commentRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.ChapterHash, data.WalletAddress, data.Comment)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, commentRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.ChapterHash, data.WalletAddress, data.Comment, data.Timestamp)
 	return ret, err
 }
 
 func (m *defaultCommentModel) Update(ctx context.Context, data *Comment) error {
 	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, commentRowsWithPlaceHolder)
-	_, err := m.conn.ExecCtx(ctx, query, data.ChapterHash, data.WalletAddress, data.Comment, data.Id)
+	_, err := m.conn.ExecCtx(ctx, query, data.ChapterHash, data.WalletAddress, data.Comment, data.Timestamp, data.Id)
 	return err
 }
 

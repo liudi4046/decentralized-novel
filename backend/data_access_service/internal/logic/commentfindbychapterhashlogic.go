@@ -26,7 +26,7 @@ func NewCommentFindByChapterHashLogic(ctx context.Context, svcCtx *svc.ServiceCo
 }
 
 func (l *CommentFindByChapterHashLogic) CommentFindByChapterHash(req *types.CommentFindByChapterHashRequest) (resp *types.CommentFindByChapterHashResponse, err error) {
-	var comments []types.Comment
+	comments := []types.Comment{}
 	raw_comments, err := l.svcCtx.CommentModel.FindAllByChapterHash(l.ctx, req.ChapterHash)
 	if err != nil && err != mysql.ErrNotFound {
 		return &types.CommentFindByChapterHashResponse{
@@ -50,6 +50,7 @@ func (l *CommentFindByChapterHashLogic) CommentFindByChapterHash(req *types.Comm
 			CommentId:      strconv.Itoa(int(comment.Id)),
 			WallentAddress: comment.WalletAddress,
 			Comment:        comment.Comment,
+			Timestamp:      comment.Timestamp,
 		})
 	}
 
