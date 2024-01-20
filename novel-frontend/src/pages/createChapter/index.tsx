@@ -10,12 +10,13 @@ import sha256 from 'crypto-js/sha256';
 import {addChapter} from '../../api/chapter'
 
 export default function CreateChapter() {
-  const { user } = useUserContext();
+  const { user, currentSubmissionRound} = useUserContext();
   const [content, setContent] = useState("");
 
+
   const handleSubmit = async () => {
-    const chapterHash = sha256(content).toString()
-    alert(chapterHash)
+    const chapterHash = sha256(content + currentSubmissionRound).toString()
+    // alert(chapterHash)
     const loginToken = localStorage.getItem('token')
     const res = await addChapter({chapterHash, content,loginToken})
 

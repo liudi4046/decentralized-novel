@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import CommentItem from "../../components/CommentItem"
-import {useState, useRef} from "react";
-
+import {useState, useRef, useEffect} from "react";
+import {getComment} from '../../api/comments'
 
 export default function Comment({ currentSelectedChapterHash,setCurrentSelectedChapterHash }:{currentSelectedChapterHash:boolean,setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
   const [commentList,setCommentList] = useState([
@@ -28,6 +28,12 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       time: '2023-01-17'
     }
   ]);
+
+  useEffect(()=>{
+    getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
+      console.log(data)
+    })
+  },[currentSelectedChapterHash])
 
   const [inputValue, setInputValue] = useState('');
 

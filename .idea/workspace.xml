@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/createChapter/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/createChapter/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
