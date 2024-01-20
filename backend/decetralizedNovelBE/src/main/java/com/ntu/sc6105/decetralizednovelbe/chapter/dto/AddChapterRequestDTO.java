@@ -9,6 +9,7 @@ public class AddChapterRequestDTO extends BaseRequestIdDTO {
     private String loginToken;
     private String chapterHash;
     private String content;
+    private String walletAddress;
 
     public String getLoginToken() {
         return loginToken;
@@ -32,5 +33,13 @@ public class AddChapterRequestDTO extends BaseRequestIdDTO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getWalletAddress() {
+        return walletAddress;
+    }
+
+    public void setWalletAddress(String walletAddress) {
+        this.walletAddress = walletAddress;
     }
 }

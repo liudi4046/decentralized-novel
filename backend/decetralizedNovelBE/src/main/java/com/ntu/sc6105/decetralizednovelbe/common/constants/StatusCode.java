@@ -4,16 +4,20 @@ import com.ntu.sc6105.decetralizednovelbe.common.dto.BaseResponseDTO;
 
 import java.text.MessageFormat;
 
-public enum StatusCode  {
+public enum StatusCode {
 
     SUCCESS("Success", "0000", "Operation Successful"),
     SYSTEM_ERROR("Error", "ERROR-001", "System Error"),
     USER_VERIFICATION_FAIL("Error", "ERROR-002", "User Login Verification Failed"),
-
-    USER_ALREADY_REGISTERED("Error", "ERROR-001", "User account already registered"),
-    ERROR_MANDATORY("Error", "ERROR-002", "{0} is mandatory"),
-    BAD_REQUEST("Error", "400", "Bad request"),
-    UNAUTHORIZED("Error", "401", "Unauthorized access");
+    CHAPTER_ALREADY_EXIST("Error", "ERROR-003", "Chapter already exists"),
+    ADD_CHAPTER_FAIL("Error", "ERROR-004", "Add chapter failed"),
+    FIND_CHAPTER_ERROR("Error", "ERROR-005", "No Chapter Found"),
+    FIND_COMMENT_ERROR("Error", "ERROR-006", "No Comment Found"),
+    ADD_COMMENT_ERROR("Error", "ERROR-007", "Add comment failed"),
+    DELETE_COMMENT_ERROR("Error", "ERROR-008", "Delete comment failed"),
+    COMMENT_ALREADY_EXIST_ERROR("Error", "ERROR-009", "Comment Already Exist"),
+    LOGIN_TOKEN_EXPIRED_ERROR("Error", "ERROR-010", "Login Token Expired"),
+    ERROR_MANDATORY("Error", "ERROR-011", "{0} is mandatory");
 
     final String status;
     final String code;

@@ -7,7 +7,7 @@ public class UserVerificationException extends BaseRestException {
 
     private static final StatusCode STATUS_CODE = StatusCode.USER_VERIFICATION_FAIL;
 
-    public UserVerificationException(){
+    public UserVerificationException() {
         super(STATUS_CODE);
     }
 
