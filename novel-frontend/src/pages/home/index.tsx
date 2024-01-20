@@ -3,11 +3,11 @@ import { useState } from "react";
 import Comment from "./Comment";
 export default function Home() {
   // const { user, setUser } = useUserContext();
-  const [isVisible,setIsVisible] = useState(false);
+  const [currentSelectedChapterHash,setCurrentSelectedChapterHash] = useState('');
   return (
     <div className="flex h-[90vh] justify-center">
-      <NovelBody setIsVisible={setIsVisible}/>
-      <Comment setIsVisible={setIsVisible} isVisible={isVisible}/>
+      <NovelBody setCurrentSelectedChapterHash={setCurrentSelectedChapterHash}/>
+      <Comment setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} currentSelectedChapterHash={currentSelectedChapterHash}/>
     </div>
   );
 }

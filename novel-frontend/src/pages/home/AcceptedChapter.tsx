@@ -4,11 +4,11 @@ import React from "react";
 export default function AcceptedChapter({
   content,
   author,
-  setIsVisible
+  setCurrentSelectedChapterHash
 }: {
   content: string;
   author: string;
-  setIsVisible:React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
@@ -20,7 +20,7 @@ export default function AcceptedChapter({
     setAnchorEl(null);
   };
   const handleClick = ()=>{
-    setIsVisible(true);
+    setCurrentSelectedChapterHash(content);
     console.log("111")
   }
   const open = Boolean(anchorEl);

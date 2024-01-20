@@ -6,15 +6,24 @@ import { toast } from "react-toastify";
 import { novelManagementContract } from "../../contracts";
 import { useUserContext } from "../../context/UserContext";
 
+import sha256 from 'crypto-js/sha256';
+import {addChapter} from '../../api/chapter'
+
 export default function CreateChapter() {
   const { user } = useUserContext();
   const [content, setContent] = useState("");
 
   const handleSubmit = async () => {
+    const chapterHash = sha256(content).toString()
+    alert(chapterHash)
+    const loginToken = localStorage.getItem('token')
+    const res = await addChapter({chapterHash, content,loginToken})
+
+    console.log(res)
     try {
       const transactionResponse = await novelManagementContract
         .connect(user)
-        .submit(content);
+        .submit(chapterHash);
 
       toast.promise(transactionResponse.wait(), {
         pending: {

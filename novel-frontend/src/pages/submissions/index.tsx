@@ -7,6 +7,7 @@ import { novelManagementContract } from "../../contracts";
 
 import NoData from "../../components/NoData";
 import Loading from "../../components/Loading";
+import {getChapter} from '../../api/chapter'
 
 type SubmissionType = [bigint, string, string, boolean, bigint] & {
   targetChapterId: bigint;
@@ -15,20 +16,65 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
   accepted: boolean;
   yesVotes: bigint;
 };
+// const getSubmissionsContentByHash = (submissionList : Array<object>) => {
+//
+// }
+// const getAllSubmissions = async () => {
+//   console.log("getAllSubmissions");
+//   const submissionsLength = await novelManagementContract.getSubmissionsLength();
+//
+//   const chapterPromises = [];
+//
+//   for (let i = 0; i < submissionsLength; i++) {
+//     const curSubmission = await novelManagementContract.submissions(i);
+//     const chapterPromise = getChapter({ chapterHashArray: [curSubmission[2]] })
+//         .then(contentTmp => {
+//           const subCopy = [...curSubmission];
+//           if (contentTmp.data.chapterContentArray[0] !== '') {
+//             subCopy[2] = contentTmp.data.chapterContentArray[0];
+//           }
+//           return subCopy;
+//         });
+//     chapterPromises.push(chapterPromise);
+//   }
+//
+//   const submissionsTemp = await Promise.all(chapterPromises);
+//   console.log(submissionsTemp);
+//
+//   return submissionsTemp;
+// };
 const getAllSubmissions = async () => {
-  console.log("getAllSubmissions");
-  const submissionsLength =
-    await novelManagementContract.getSubmissionsLength();
+    console.log("getAllSubmissions");
+    const submissionsLength = await novelManagementContract.getSubmissionsLength();
 
-  const submissionsTemp = [];
+    // Create an array of promises for curSubmissions
+    const curSubmissionPromises = [];
+    for (let i = 0; i < submissionsLength; i++) {
+        curSubmissionPromises.push(novelManagementContract.submissions(i));
+    }
 
-  for (let i = 0; i < submissionsLength; i++) {
-    const curSubmission = await novelManagementContract.submissions(i);
-    submissionsTemp.push(curSubmission);
-  }
+    // Resolve all curSubmissions
+    const curSubmissions = await Promise.all(curSubmissionPromises);
 
-  return [...submissionsTemp];
-};
+    // Create chapterPromises based on curSubmissions
+    const chapterPromises = curSubmissions.map(curSubmission => {
+        return getChapter({ chapterHashArray: [curSubmission[2]] })
+            .then(contentTmp => {
+                const subCopy = [...curSubmission];
+                if (contentTmp.data.chapterContentArray[0] !== '') {
+                    subCopy[2] = contentTmp.data.chapterContentArray[0];
+                }
+                return subCopy;
+            });
+    });
+
+    // Resolve all chapter promises and return
+    const submissionsTemp = await Promise.all(chapterPromises);
+    console.log(submissionsTemp);
+
+    return submissionsTemp;
+}
+
 export default function Submissions() {
   const { user, currentSubmissionRound } = useUserContext();
 
@@ -37,6 +83,7 @@ export default function Submissions() {
     getAllSubmissions,
     {
       enabled: !!user,
+      refetchOnWindowFocus: false
     }
   );
 

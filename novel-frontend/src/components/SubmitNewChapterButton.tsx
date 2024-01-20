@@ -11,13 +11,21 @@ import {
 import { useQueryClient } from "react-query";
 import { novelManagementContract } from "../contracts";
 import { toast } from "react-toastify";
-
+import sha256 from 'crypto-js/sha256';
+import {addChapter} from '../api/chapter'
 export default function SubmitNewChapterButton() {
   const queryClient = useQueryClient();
   const { user } = useUserContext();
   const [content, setContent] = useState("");
   const [open, setOpen] = useState(false);
   const handleSubmit = async () => {
+    alert(1)
+    // const chapterHash = sha256(content)
+    // alert(chapterHash)
+    // const res = await addChapter({chapterHash, content})
+    //
+    // console.log(res)
+
     try {
       await (
         await novelManagementContract.connect(user).submit(content)

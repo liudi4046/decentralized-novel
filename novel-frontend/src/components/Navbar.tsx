@@ -24,25 +24,29 @@ export default function Navbar() {
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
       // connectMetaMask();
+      const token = localStorage.getItem('token')
+      if(token) {
+        connectMetaMask()
+      }
     } else {
       alert("Please install MetaMask first!");
     }
   }, []);
 
-  // const connectMetaMask = async () => {
-  //   try {
-  //     await window?.ethereum?.request({
-  //       method: "eth_requestAccounts",
-  //     });
-  //
-  //     setUser(await Provider.getSigner());
-  //     window.ethereum.on("accountsChanged", async function () {
-  //       setUser(await Provider.getSigner());
-  //     });
-  //   } catch (error) {
-  //     console.log("Error on connecting MetaMask account:", error);
-  //   }
-  // };
+  const connectMetaMask = async () => {
+    try {
+      await window?.ethereum?.request({
+        method: "eth_requestAccounts",
+      });
+
+      setUser(await Provider.getSigner());
+      window.ethereum.on("accountsChanged", async function () {
+        setUser(await Provider.getSigner());
+      });
+    } catch (error) {
+      console.log("Error on connecting MetaMask account:", error);
+    }
+  };
 
   return (
     <AppBar position="sticky">

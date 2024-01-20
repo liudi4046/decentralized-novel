@@ -27,7 +27,7 @@ export const getAcceptedSubmissions = async (
   }
 };
 
-export default function NovelBody({setIsVisible}:{setIsVisible:React.Dispatch<React.SetStateAction<boolean>>}) {
+export default function NovelBody({setCurrentSelectedChapterHash}:{setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
   console.log('NovelBody')
 
   const { setCurrentSubmissionRound, currentSubmissionRound } =
@@ -54,7 +54,7 @@ export default function NovelBody({setIsVisible}:{setIsVisible:React.Dispatch<Re
       {data?.chapters.map((chapter, index) => {
         return (
           <span key={index}>
-            <AcceptedChapter setIsVisible={setIsVisible} content={chapter} author={data.authors[index]} />
+            <AcceptedChapter setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} content={chapter} author={data.authors[index]} />
           </span>
         );
       })}

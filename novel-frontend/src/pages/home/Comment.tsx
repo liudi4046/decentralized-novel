@@ -3,7 +3,7 @@ import CommentItem from "../../components/CommentItem"
 import {useState, useRef} from "react";
 
 
-export default function Comment({ isVisible,setIsVisible }:{isVisible:boolean,setIsVisible:React.Dispatch<React.SetStateAction<boolean>>}) {
+export default function Comment({ currentSelectedChapterHash,setCurrentSelectedChapterHash }:{currentSelectedChapterHash:boolean,setCurrentSelectedChapterHash:React.Dispatch<React.SetStateAction<string>>}) {
   const [commentList,setCommentList] = useState([
     {
       address: '0x21235kjkhgvhuijlkbhvgghiuojlknfsgdddgs4',
@@ -55,13 +55,14 @@ export default function Comment({ isVisible,setIsVisible }:{isVisible:boolean,se
   };
   return (
     <>
-    {isVisible ? 
+    {currentSelectedChapterHash !== '' ?
     <div className="flex flex-col bg-blue-100 w-1/5">
       <div className="text-lg p-4 px-2.5 flex justify-between">
         <div>
           Comments
+          {currentSelectedChapterHash}
         </div>
-        <div onClick={()=>{setIsVisible(false)}}>
+        <div onClick={()=>{setCurrentSelectedChapterHash('')}}>
           <CloseIcon></CloseIcon>
         </div>
       </div>

@@ -48,9 +48,6 @@ function MenuButton() {
 
             // const recoveredAddress = ethers.utils.verifyMessage(ethers.utils.arrayify(messageHash), signature);
 
-
-            alert(address)
-
             const res: object = await login({
                 signature,
                 message,
