@@ -31,6 +31,7 @@ type (
 		CommentId      string `json:"commentId"`
 		WallentAddress string `json:"walletAddress"`
 		Comment        string `json:"comment"`
+		Timestamp      string `json:"timestamp"`
 	}
 	CommentFindByChapterHashResponse {
 		Status   string    `json:"status"`

@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"strconv"
+	"time"
 
 	"data_access_service/internal/svc"
 	"data_access_service/internal/types"
@@ -25,11 +27,13 @@ func NewCommentAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Commen
 }
 
 func (l *CommentAddLogic) CommentAdd(req *types.CommentAddRequest) (resp *types.CommentAddResponse, err error) {
+	current_time := time.Now().Unix()
 
 	_, err = l.svcCtx.CommentModel.Insert(l.ctx, &mysql.Comment{
 		ChapterHash:   req.ChapterHash,
 		WalletAddress: req.WalletAddress,
 		Comment:       req.Comment,
+		Timestamp:     strconv.Itoa(int(current_time)),
 	})
 	if err != nil {
 		return &types.CommentAddResponse{

@@ -27,6 +27,7 @@ type Comment struct {
 	CommentId      string `json:"commentId"`
 	WallentAddress string `json:"walletAddress"`
 	Comment        string `json:"comment"`
+	Timestamp      string `json:"timestamp"`
 }
 
 type CommentAddRequest struct {
