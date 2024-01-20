@@ -47,7 +47,8 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
     if(currentSelectedChapterHash)
       getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
       console.log(data)
-      setCommentList([...data.comments])
+      if(data.comments.length === 0) setCommentList([])
+      else setCommentList([...data.comments])
     })
   },[currentSelectedChapterHash])
 
@@ -74,9 +75,9 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       console.log(data,889768)
       // 执行更多操作，如提交表单等
       setCommentList([...commentList,{
-        address,
-        content: inputValue,
-        time: '2023-01-17'
+        walletAddress: address,
+        comment: inputValue,
+        timestamp: Math.floor(Date.now() / 1000)
       }])
       setInputValue('')
       scrollToBottom()

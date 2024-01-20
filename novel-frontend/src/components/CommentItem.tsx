@@ -10,6 +10,14 @@ export default function Comment({ commentData }:{commentData:object}) {
         const res = await deleteComment({commentId,loginToken,chapterHash})
     }
 
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // 月份是从 0 开始的
+        const day = date.getDate();
+        return `${year}-${month}-${day}`;
+    }
+
     useEffect(() => {
         const setUserAddress = async () => {
             setAddress(await user?.getAddress());
@@ -24,7 +32,7 @@ export default function Comment({ commentData }:{commentData:object}) {
         </div>
         <div className="text-md mt-1 text-gray-700">{commentData.comment}</div>
         <div className="flex justify-between items-center">
-            <div className="text-xs mt-0.5  text-gray-400 ">{commentData.timestamp}</div>
+            <div className="text-xs mt-0.5  text-gray-400 ">{ formatDate(commentData.timestamp) }</div>
             {address === commentData.walletAddress ? <CloseIcon onClick={handleDeleteComment} className="close-icon scale-75  text-gray-400"></CloseIcon> : null}
 
         </div>
