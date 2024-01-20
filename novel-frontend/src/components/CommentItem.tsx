@@ -2,12 +2,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import {useUserContext} from "../context/UserContext";
 import {useEffect, useState} from "react";
 import {deleteComment} from '../api/comments'
-export default function Comment({ commentData }:{commentData:object}) {
+export default function CommentItem({ commentData, chapterHash,commentList, setCommentList }:{setCommentList:Function,commentList:Array<object>,commentData:object,chapterHash:string}) {
     const { user, setUser } = useUserContext();
     const [address, setAddress] = useState<string | undefined>("");
 
     const handleDeleteComment = async () =>{
+        const commentId = commentData?.commentId
+        const loginToken = localStorage.getItem('token')
         const res = await deleteComment({commentId,loginToken,chapterHash})
+
+        const filteredComments = commentList.filter(comment => comment?.commentId !== commentId);
+        setCommentList(filteredComments)
+
     }
 
     const formatDate = (timestamp) => {

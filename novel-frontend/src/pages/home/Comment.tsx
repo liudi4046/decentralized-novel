@@ -47,7 +47,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
     if(currentSelectedChapterHash)
       getComment({'chapterHash':currentSelectedChapterHash}).then(({data})=>{
       console.log(data)
-      if(data.comments.length === 0) setCommentList([])
+      if(!data.comments) setCommentList([])
       else setCommentList([...data.comments])
     })
   },[currentSelectedChapterHash])
@@ -99,7 +99,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
       <div className="flex-1 min-h-0 overflow-y-auto pb-4 overflow-x-hidden">
         {
           commentList.map((item,index)=>{
-            return (<CommentItem key={index} commentData={item}></CommentItem>)
+            return (<CommentItem setCommentList={setCommentList} commentList={commentList} chapterHash={currentSelectedChapterHash} key={index} commentData={item}></CommentItem>)
         })
         }
         <div ref={commentsEndRef} />
