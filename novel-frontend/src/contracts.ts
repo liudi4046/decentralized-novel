@@ -10,7 +10,7 @@ let Provider = null
 if(window.ethereum) {
     Provider = new ethers.BrowserProvider(window.ethereum);
 } else {
-    Provider = ethers.getDefaultProvider('goerli')
+    Provider = ethers.getDefaultProvider(11155111)
 }
 export { Provider }
 const novelManagementContractAddress =

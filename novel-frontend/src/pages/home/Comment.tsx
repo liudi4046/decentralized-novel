@@ -96,7 +96,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
           <CloseIcon></CloseIcon>
         </div>
       </div>
-      <div className="flex-1 min-h-0 overflow-y-auto pb-4 overflow-x-hidden">
+      <div className="flex-1 min-h-0 overflow-y-auto pb-5 overflow-x-hidden">
         {
           commentList.map((item,index)=>{
             return (<CommentItem setCommentList={setCommentList} commentList={commentList} chapterHash={currentSelectedChapterHash} key={index} commentData={item}></CommentItem>)

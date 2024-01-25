@@ -29,7 +29,8 @@ export default function AcceptedChapter({
     setAnchorEl(null);
   };
   const handleClick = ()=>{
-    setCurrentSelectedChapterHash(contentHash);
+      setCurrentSelectedChapterHash('');
+    // setCurrentSelectedChapterHash(contentHash);
     console.log("111")
   }
   const open = Boolean(anchorEl);
@@ -41,7 +42,7 @@ export default function AcceptedChapter({
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
         display="inline"
-        classname="text-gray-700 "
+        className="text-gray-700"
         style={{
             fontWeight: "350",
           backgroundColor: open ?"rgb(238 236 146)"  : currentSelectedChapterHash === contentHash ? "rgb(244 243 195)":"transparent",

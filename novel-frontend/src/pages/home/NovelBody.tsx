@@ -19,7 +19,7 @@ export const getAcceptedSubmissions = async (
   } catch (error: any) {
     console.error(error);
     if (error.message.includes("could not decode result data")) {
-      toast.error("Metamask should be connected to goerli test network");
+      toast.error("Metamask should be connected to Sepolia. test network");
       return;
     }
     console.log(error.message);
@@ -49,7 +49,7 @@ export default function NovelBody({currentSelectedChapterHash,setCurrentSelected
   console.log("currentSubmissionRound", currentSubmissionRound);
 
   return (
-    <div className="w-3/5 lg:w-1/2 h-full p-4 text-gray-900 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
+    <div className="w-3/5 h-full p-4 bg-[#ABCFF5] border-x-2 border-blue-400 overflow-auto">
       <Loading isLoading={isFetching} />
       {data?.chapters.map((chapter, index) => {
         return (

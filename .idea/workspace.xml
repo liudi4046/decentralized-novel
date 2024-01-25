@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/components/CommentItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/contracts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/contracts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/AcceptedChapter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/Comment.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/NovelBody.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +38,10 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/src/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -57,6 +63,8 @@
       <updated>1705499192264</updated>
       <workItem from="1705499193391" duration="14000" />
       <workItem from="1705500345265" duration="3000" />
+      <workItem from="1706182120875" duration="16000" />
+      <workItem from="1706182140579" duration="460000" />
     </task>
     <servers />
   </component>
