@@ -67,7 +67,7 @@ const HandsDetection = ({setGestureClick}:{setGestureClick:Function}) => {
 
                     // 使用比例来判断是否捏住
                     const proportion = distanceBetweenFingers / Math.min(distanceThumbToWrist, distanceIndexToWrist);
-                    const threshold = 0.4;
+                    const threshold = 0.2;
 
                     if (isRightHand) {
                         // 右手捏合检测
@@ -210,7 +210,7 @@ const HandsDetection = ({setGestureClick}:{setGestureClick:Function}) => {
     }.bind(window), []);
 
     return (
-        <div className="container" style={{ width: '30%', height: '100%' }}>
+        <div className="container" style={{ width: '25%', height: '100%' }}>
             <div style={{ width: '100%', height: '100%' }}>
                 <video ref={videoRef} className="input_video"></video>
                 <div className="canvas-container">
@@ -223,7 +223,7 @@ const HandsDetection = ({setGestureClick}:{setGestureClick:Function}) => {
                 </div>
                 <a className="abs logo" href="http://www.mediapipe.dev" target="_blank">
                     <div style={{ display: 'flex', alignItems: 'center', bottom: 0, right: '10px' }}>
-                        <span className="title">HCI Final Project</span>
+                        <span className="title">Gesture Control</span>
                     </div>
                 </a>
                 <div className="shoutout">

@@ -78,6 +78,7 @@ export default function NovelBody({gestureClick,currentSelectedChapterHash,setCu
       if(operation === 'next') nextIndex = (index + 1) % data?.chapters?.length;
       else nextIndex = (index - 1 + data?.chapters?.length) % data?.chapters?.length;
       if(nextIndex) return data?.chapters[nextIndex];
+      if(nextIndex === 0 ) return data?.chapters[nextIndex];
       return ''
     }
   }

@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/home";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { UserProvider } from "./context/UserContext";
+import { HandsVisibleProvider } from "./context/HandsVisibleContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
@@ -119,7 +120,7 @@ function App() {
   const router = createHashRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home  />} />
         <Route path="submissions" element={<Submissions />} />
         <Route path="transfer" element={<Transfer />} />
         <Route path="create-chapter" element={<CreateChapter />} />
@@ -132,6 +133,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <UserProvider>
+            <HandsVisibleProvider>
             <RouterProvider router={router} />
             <ToastContainer
               position="bottom-left"
@@ -158,6 +160,7 @@ function App() {
                 <GitHubIcon style={{ color: "gray" }} fontSize="large" />
               </IconButton>
             </div>
+            </HandsVisibleProvider>
           </UserProvider>
         </QueryClientProvider>
       </ThemeProvider>
