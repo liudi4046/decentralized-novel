@@ -19,6 +19,35 @@ import UserNFTs from "./pages/userNFTs";
 import HelperDialog from "./components/HelperDialog";
 
 const queryClient = new QueryClient();
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#ff9800", // 橙色
+//       contrastText: "#ffffff", // 白色文字
+//     },
+//     secondary: {
+//       main: "#ff5722", // 深橙色
+//       contrastText: "#ffffff", // 白色文字
+//     },
+//     background: {
+//       default: "#ffccbc", // 淡橙色背景
+//     },
+//   },
+//   components: {
+//     MuiButton: {
+//       styleOverrides: {
+//         root: {
+//           backgroundColor: "#ff9800", // 按钮背景颜色为橙色
+//           color: "#ffffff", // 文字颜色为白色
+//           "&:hover": {
+//             backgroundColor: "#fb8c00", // 深橙色悬停效果
+//           },
+//         },
+//       },
+//     },
+//     // 其他组件样式保持与原主题一致
+//   },
+// });
 
 const theme = createTheme({
   palette: {
@@ -31,7 +60,7 @@ const theme = createTheme({
       contrastText: "#ffffff",
     },
     background: {
-      default: "#1e1e1e",
+      default: "#1e1e1e"
     },
   },
   components: {

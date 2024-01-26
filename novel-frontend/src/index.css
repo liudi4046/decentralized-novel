@@ -1,7 +1,11 @@
+@import url('./assets/hand_modules2/hand_style.css');
+
 @tailwind base;
 @tailwind components;
-html {
-  background: linear-gradient(120deg, #2e4d85, #1e1e1e);
+
+html body #root {
+  background: linear-gradient(120deg, #2e4d85, #1e1e1e) !important;
+  /*background-color:gray*/
 }
 
 /* 添加你的自定义CSS样式 */

@@ -29,8 +29,8 @@ export default function AcceptedChapter({
     setAnchorEl(null);
   };
   const handleClick = ()=>{
-      setCurrentSelectedChapterHash('');
-    // setCurrentSelectedChapterHash(contentHash);
+      // setCurrentSelectedChapterHash('');
+    setCurrentSelectedChapterHash(contentHash);
     console.log("111")
   }
   const open = Boolean(anchorEl);
