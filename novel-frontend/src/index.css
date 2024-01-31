@@ -66,6 +66,7 @@ html body #root {
   width: 300px;
   height: 300px;
   position: relative;
+  z-index:10;
   border-radius: 40px;
   padding: 40px;
   box-sizing: border-box;
