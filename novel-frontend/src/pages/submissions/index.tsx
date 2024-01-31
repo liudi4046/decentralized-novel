@@ -1,6 +1,7 @@
 import { useUserContext } from "../../context/UserContext";
 
 import { useQuery } from "react-query";
+import React from 'react'
 
 import SubmissionCard from "./SubmissionCard";
 import { novelManagementContract } from "../../contracts";
@@ -43,6 +44,16 @@ type SubmissionType = [bigint, string, string, boolean, bigint] & {
 //
 //   return submissionsTemp;
 // };
+function groupByTargetChapterId(submissions) {
+    return submissions.reduce((acc, submission) => {
+        const chapterId = submission[0].toString();
+        if (!acc[chapterId]) {
+            acc[chapterId] = [];
+        }
+        acc[chapterId].push(submission);
+        return acc;
+    }, {});
+}
 const getAllSubmissions = async () => {
     console.log("getAllSubmissions");
     const submissionsLength = await novelManagementContract.getSubmissionsLength();
@@ -93,10 +104,26 @@ export default function Submissions() {
   const previousRoundSubmissions = allSubmissions?.filter((submission) => {
     return Number(submission[0]) !== currentSubmissionRound;
   });
+  // const previousRoundSubmissionsList = []
+  // previousRoundSubmissions.forEach((submission)=>{
+  //       previousRoundSubmissionsList[submission[0]].push(submission)
+  //   })
+    function groupSubmissionsByFirstElement(submissions) {
+        return submissions?.reduce((acc, submission) => {
+            // 确保acc中有一个以submission[0]为键的数组存在
+            if (!acc[submission[0]]) {
+                acc[submission[0]] = [];
+            }
+            // 将当前submission添加到正确的数组中
+            acc[submission[0]].push(submission);
+            return acc;
+        }, []);
+    }
+    const groupedSubmissions = groupSubmissionsByFirstElement(previousRoundSubmissions);
 
   console.log("currentSubmissionRound in submissions", currentSubmissionRound);
   return (
-    <div className="relative min-h-[90vh] w-[90%] mx-auto">
+    <div className="relative min-fullscreen-minus-64px w-[90%] mx-auto">
       <p className="text-center text-white text-3xl mt-16 mb-10">
         Current Round &nbsp;(Round {currentSubmissionRound})
       </p>
@@ -106,25 +133,26 @@ export default function Submissions() {
       ) : !currentRoundSubmissions || !currentRoundSubmissions.length ? (
         <NoData content="There are not any submissions in current round" />
       ) : (
-        <div className="grid grid-cols-4 grid-flow-row gap-12 ">
-          {[...(currentRoundSubmissions || [])]
-            ?.reverse()
-            .map((submission, index) => {
-              return (
-                <div className="flex justify-center" key={index}>
-                  <SubmissionCard
-                    key={index}
-                    index={(allSubmissions?.length as number) - 1 - index}
-                    content={submission[2]}
-                    author={submission[1]}
-                    targetChapterId={submission[0].toString()}
-                    yesVotes={submission[4].toString()}
-                    accepted={submission[3] ? "true" : "false"}
-                  />
-                </div>
-              );
-            })}
-        </div>
+          <div className="grid grid-cols-4 grid-flow-row gap-12">
+                  {[...(currentRoundSubmissions || [])]
+                      ?.reverse()
+                      .map((submission, index) => {
+                          return (
+                              <div className="flex justify-center" key={index}>
+                                  <SubmissionCard
+                                      key={index}
+                                      index={(allSubmissions?.length as number) - 1 - index}
+                                      content={submission[2]}
+                                      author={submission[1]}
+                                      targetChapterId={submission[0].toString()}
+                                      yesVotes={submission[4].toString()}
+                                      accepted={submission[3] ? "true" : "false"}
+                                  />
+                              </div>
+                          );
+                      })}
+              </div>
+
       )}
 
       <p className="text-center text-white text-3xl mt-16 mb-10">
@@ -135,23 +163,27 @@ export default function Submissions() {
       ) : !previousRoundSubmissions || !previousRoundSubmissions.length ? (
         <NoData content="There are not any submissions in previous rounds" />
       ) : (
-        <div className="grid grid-cols-4 grid-flow-row gap-12 mb-5">
-          {[...previousRoundSubmissions]?.reverse().map((submission, index) => {
-            return (
-              <div className="flex justify-center" key={index}>
-                <SubmissionCard
-                  key={index}
-                  index={(allSubmissions?.length as number) - 1 - index}
-                  content={submission[2]}
-                  author={submission[1]}
-                  targetChapterId={submission[0].toString()}
-                  yesVotes={submission[4].toString()}
-                  accepted={submission[3] ? "true" : "false"}
-                />
-              </div>
-            );
-          })}
-        </div>
+          <div>
+              {groupedSubmissions?.slice().reverse().map((submissionList, listIndex) => (
+                  <div className="grid grid-cols-4 grid-flow-row gap-12 mb-10">
+                  <React.Fragment key={listIndex}>
+                      {submissionList?.slice().reverse().map((submission, submissionIndex) => (
+                          <div className="flex justify-center" key={submissionIndex}>
+                              <SubmissionCard
+                                  index={submissionList?.length - submissionIndex}
+                                  content={submission[2]}
+                                  author={submission[1]}
+                                  targetChapterId={submission[0].toString()}
+                                  yesVotes={submission[4].toString()}
+                                  accepted={submission[3] ? "true" : "false"}
+                              />
+                          </div>
+                      ))}
+                  </React.Fragment>
+                  </div>
+              ))}
+          </div>
+
       )}
     </div>
   );

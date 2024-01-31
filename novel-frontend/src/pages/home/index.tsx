@@ -11,7 +11,7 @@ export default function Home() {
   const [currentSelectedChapterHash,setCurrentSelectedChapterHash] = useState('');
     const [gestureClick, setGestureClick] = useState({leftCount: 0,rightCount: 0})
   return (
-    <div ref={parent} className="flex h-[90vh] justify-center">
+    <div ref={parent} className="flex fullscreen-minus-64px justify-center">
       {handsVisible&&<HandsDetection setGestureClick={setGestureClick}></HandsDetection>}
       <NovelBody gestureClick={gestureClick} setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} currentSelectedChapterHash={currentSelectedChapterHash}/>
       <Comment setCurrentSelectedChapterHash={setCurrentSelectedChapterHash} currentSelectedChapterHash={currentSelectedChapterHash}/>

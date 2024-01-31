@@ -58,7 +58,7 @@ export default function CreateChapter() {
   };
 
   return (
-    <div className="flex h-[90vh] justify-center items-center">
+    <div className="flex fullscreen-minus-64px justify-center items-center">
       {" "}
       <div className="flex flex-col w-1/3 gap-5">
         <TextField

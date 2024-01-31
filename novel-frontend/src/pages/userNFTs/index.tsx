@@ -34,7 +34,7 @@ export default function UserNFTs() {
   });
   console.log("nfts", nfts);
   return (
-    <div className="h-[90vh] p-10">
+    <div className="fullscreen-minus-64px p-10">
       <p className="text-5xl text-gray-200 text-center">My NFTs</p>
       <div className="grid-cols-3 grid m-10 place-items-center">
         {isLoading ? (

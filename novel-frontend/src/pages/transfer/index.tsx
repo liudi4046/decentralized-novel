@@ -46,7 +46,7 @@ export default function Transfer() {
     }
   };
   return (
-    <div className="flex justify-center items-center h-[90vh]">
+    <div className="flex justify-center items-center fullscreen-minus-64px">
       <div className="flex flex-col w-1/4 gap-4">
         <TextField
           placeholder="amount"
