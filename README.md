@@ -28,9 +28,9 @@ Tokens follow the ERC20 standard, while NFTs follow the ERC721 standard.
 
 ### 2023-02-01-144000 update：
 
-NovelManagement address: 0x2b06634442c651419840F2e52C6FD39b351cD712
-NFTContract address 0x1b4Afe74a20f4863F5Ff175745a41ad081363423
-VoteToken address 0xcd1D5090cea5EbDdcc825b8fE392C8B18592DEa1
+NovelManagement address: 0x0996e42454aD81Bef48766ACF6D4Eb6f57acd071
+NFTContract address 0xb8B27Ca77526902a3E8727ee5da3ac05FC015BC7
+VoteToken address 0xcF2043678538f18cb413BED876938752D8339165
 
 
 <!-- Token Contract Address: 0xc1836e805D2d6F8eCcBe07cbb356d3336C9AEb61
