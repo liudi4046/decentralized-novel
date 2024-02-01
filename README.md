@@ -26,8 +26,15 @@ Tokens follow the ERC20 standard, while NFTs follow the ERC721 standard.
 
 ## All contracts are deployed on Goerli test network
 
-Token Contract Address: 0xc1836e805D2d6F8eCcBe07cbb356d3336C9AEb61
+### 2023-02-01-144000 update：
+
+NovelManagement address: 0x2b06634442c651419840F2e52C6FD39b351cD712
+NFTContract address 0x1b4Afe74a20f4863F5Ff175745a41ad081363423
+VoteToken address 0xcd1D5090cea5EbDdcc825b8fE392C8B18592DEa1
+
+
+<!-- Token Contract Address: 0xc1836e805D2d6F8eCcBe07cbb356d3336C9AEb61
 
 NFT Contract Address: 0xc64f5324507C9A1c0d2735062aC4137994d5E410
 
-Management Contract Address:0x98ce973C84FF9cbf6987e0C3225954F70eC04332
+Management Contract Address:0x98ce973C84FF9cbf6987e0C3225954F70eC04332 -->
