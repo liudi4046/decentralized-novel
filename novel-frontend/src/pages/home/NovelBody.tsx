@@ -23,7 +23,7 @@ function scrollToCenter(element, container) {
     const elementTopRelativeToContainer = elementRect.top - containerRect.top;
 
     // 计算容器中心的位置
-    const containerCenter = container.clientHeight / 2;
+    const containerCenter = container.clientHeight / 3;
 
     // 计算滚动距离
     const scrollPosition = elementTopRelativeToContainer - containerCenter + container.scrollTop;
