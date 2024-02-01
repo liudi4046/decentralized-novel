@@ -104,7 +104,7 @@ export default function Comment({ currentSelectedChapterHash,setCurrentSelectedC
         }
         <div ref={commentsEndRef} />
       </div>
-      <div className="bg-blue-50 p-5">
+      <div className="bg-blue-50 p-5 text-gray-800">
         <input
             type="text"
             value={inputValue}
