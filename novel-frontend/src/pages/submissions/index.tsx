@@ -141,7 +141,7 @@ export default function Submissions() {
                               <div className="flex justify-center" key={index}>
                                   <SubmissionCard
                                       key={index}
-                                      index={(currentRoundSubmissions?.length as number) - index}
+                                      index={(allSubmissions?.length as number) - 1 - index}
                                       content={submission[2]}
                                       author={submission[1]}
                                       targetChapterId={submission[0].toString()}
