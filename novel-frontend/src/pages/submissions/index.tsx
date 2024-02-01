@@ -141,6 +141,7 @@ export default function Submissions() {
                               <div className="flex justify-center" key={index}>
                                   <SubmissionCard
                                       key={index}
+                                      isCurrentRound={true}
                                       index={(allSubmissions?.length as number) - 1 - index}
                                       content={submission[2]}
                                       author={submission[1]}
@@ -173,6 +174,7 @@ export default function Submissions() {
                                       index={submissionList?.length - submissionIndex}
                                       content={submission[2]}
                                       author={submission[1]}
+                                      isCurrentRound={false}
                                       targetChapterId={submission[0].toString()}
                                       yesVotes={submission[4].toString()}
                                       accepted={submission[3] ? "true" : "false"}
