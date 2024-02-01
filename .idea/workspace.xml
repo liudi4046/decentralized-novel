@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03685694-b525-40f9-b639-a06bbb674a67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/novel-frontend/public/DNVT.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novel-frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/novel-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/createChapter/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/createChapter/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/home/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/submissions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/submissions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/transfer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/transfer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/novel-frontend/src/pages/userNFTs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/novel-frontend/src/pages/userNFTs/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,23 +38,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/jackie/Desktop/MyAlbum/decentralized-novel/novel-frontend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/novel-frontend/public" />
       <recent name="$PROJECT_DIR$/novel-frontend" />
       <recent name="$PROJECT_DIR$/novel-frontend/src/assets" />
       <recent name="$PROJECT_DIR$/novel-frontend/src/components" />
@@ -77,7 +76,7 @@
       <workItem from="1706182140579" duration="21465000" />
       <workItem from="1706275407901" duration="36000" />
       <workItem from="1706275707526" duration="2358000" />
-      <workItem from="1706713974971" duration="3971000" />
+      <workItem from="1706713974971" duration="5868000" />
     </task>
     <servers />
   </component>

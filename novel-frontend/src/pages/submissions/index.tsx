@@ -166,20 +166,20 @@ export default function Submissions() {
           <div>
               {groupedSubmissions?.slice().reverse().map((submissionList, listIndex) => (
                   <div className="grid grid-cols-4 grid-flow-row gap-12 mb-10">
-                  <React.Fragment key={listIndex}>
-                      {submissionList?.slice().reverse().map((submission, submissionIndex) => (
-                          <div className="flex justify-center" key={submissionIndex}>
-                              <SubmissionCard
-                                  index={submissionList?.length - submissionIndex}
-                                  content={submission[2]}
-                                  author={submission[1]}
-                                  targetChapterId={submission[0].toString()}
-                                  yesVotes={submission[4].toString()}
-                                  accepted={submission[3] ? "true" : "false"}
-                              />
-                          </div>
-                      ))}
-                  </React.Fragment>
+                      <React.Fragment key={listIndex}>
+                          {submissionList?.slice().reverse().map((submission, submissionIndex) => (
+                              <div className="flex justify-center" key={submissionIndex}>
+                                  <SubmissionCard
+                                      index={submissionList?.length - submissionIndex}
+                                      content={submission[2]}
+                                      author={submission[1]}
+                                      targetChapterId={submission[0].toString()}
+                                      yesVotes={submission[4].toString()}
+                                      accepted={submission[3] ? "true" : "false"}
+                                  />
+                              </div>
+                          ))}
+                      </React.Fragment>
                   </div>
               ))}
           </div>
